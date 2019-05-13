@@ -1,4 +1,4 @@
-package com.example.omaha12_v1
+package com.project.omaha12_v1
 
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4
