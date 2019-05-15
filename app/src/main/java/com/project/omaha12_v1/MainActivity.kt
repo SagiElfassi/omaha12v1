@@ -1,4 +1,4 @@
-package com.example.omaha12_v1
+package com.project.omaha12_v1
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -10,6 +10,3 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
     }
 }
-
-
-
