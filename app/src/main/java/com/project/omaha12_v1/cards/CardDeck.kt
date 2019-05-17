@@ -1,14 +1,31 @@
+
+
 package com.project.omaha12_v1.cards
 
+import java.util.*
+
 interface CardDeck {
+    fun shuffle(): Unit
 
-    fun shuffle(): CardDeck
-
+    fun takeCard(): PokerCard
 }
 
-class CardDeckImpl(allCards: List<PokerCard>) : CardDeck {
-    override fun shuffle(): CardDeck {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+class CardDeckImpl(val allCards: Stack<PokerCard>) : CardDeck {
+    override fun takeCard(): PokerCard {
+        return allCards.pop()
     }
 
+    override fun shuffle(): Unit {
+        allCards.shuffled()
+    }
+}
+
+class CardDeckFactory {
+    fun build(): CardDeckImpl {
+        val mutableList = Stack<PokerCard>()
+        for (shape in Shape.values())
+            for (cardValue in 1..13) mutableList.add(PokerCard(shape, cardValue))
+
+        return CardDeckImpl(mutableList)
+    }
 }
