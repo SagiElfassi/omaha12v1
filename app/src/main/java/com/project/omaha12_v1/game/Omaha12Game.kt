@@ -1,19 +1,14 @@
 package com.project.omaha12_v1.game
 
 import com.project.omaha12_v1.board.GameBoard
-import com.project.omaha12_v1.cards.CardDeck
-import com.project.omaha12_v1.cards.CardDeckFactory
 import com.project.omaha12_v1.dealers.Dealer
-import com.project.omaha12_v1.players.Player
 
 class Omaha12Game(val dealer: Dealer, var gameBoard: GameBoard) {
 
     fun startNewGame() {
-        val cardDeck = CardDeckFactory().build()
-        println(cardDeck.allCards)
-        dealer.shuffle(cardDeck)
-        println(cardDeck.allCards)
-        //   dealer.deal(null)
+        println(dealer.getDeck())
+        dealer.shuffle()
+        println(dealer.getDeck())
     }
 
     fun open3Flops() {

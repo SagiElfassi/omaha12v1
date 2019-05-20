@@ -8,14 +8,21 @@ import java.util.*
 interface Dealer {
     fun deal(players: Sequence<Player>): Int
 
-    fun shuffle(): CardDeck
+    fun shuffle(): Unit
 
     fun open3Flops(): List<List<PokerCard>>
 
     fun openTurnAndRiver(): List<List<PokerCard>>
+
+    fun getDeck(): CardDeck
 }
 
-class DealerImpl(val cardDeck: CardDeck): Dealer {
+class DealerImpl(private val cardDeck: CardDeck) : Dealer {
+
+    override fun getDeck(): CardDeck {
+        return cardDeck
+    }
+
     override fun open3Flops(): List<List<PokerCard>> {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
@@ -28,7 +35,7 @@ class DealerImpl(val cardDeck: CardDeck): Dealer {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    override fun shuffle(): CardDeck {
+    override fun shuffle() {
         return cardDeck.shuffle()
     }
 
