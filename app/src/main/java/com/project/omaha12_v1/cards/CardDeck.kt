@@ -6,7 +6,6 @@ import java.util.*
 
 interface CardDeck {
     fun shuffle(): Unit
-
     fun takeCard(): PokerCard
 }
 
