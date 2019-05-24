@@ -1,5 +1,6 @@
 package com.project.omaha12_v1
 
+import com.project.omaha12_v1.cards.CardDeckFactory
 import org.junit.Test
 
 import org.junit.Assert.*
@@ -9,9 +10,13 @@ import org.junit.Assert.*
  *
  * See [testing documentation](http://d.android.com/tools/testing).
  */
-class ExampleUnitTest {
+class CardDeckTest {
+
+    private val cardDeck = CardDeckFactory().build()
+
     @Test
-    fun addition_isCorrect() {
-        assertEquals(4, 2 + 2)
+    fun `create card deck`() {
+        assertEquals(364, cardDeck.allCards.map { c -> c.value }.sum())
     }
+
 }
