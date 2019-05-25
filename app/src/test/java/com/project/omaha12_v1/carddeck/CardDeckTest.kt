@@ -1,4 +1,4 @@
-package com.project.omaha12_v1
+package com.project.omaha12_v1.carddeck
 
 import com.project.omaha12_v1.cards.CardDeckFactory
 import org.junit.Test
