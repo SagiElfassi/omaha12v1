@@ -6,7 +6,9 @@ interface PokerHand {
     fun compare(other: PokerHand)
 }
 
-class PokerHandImpl(private val handRank: HandRank, val valuationArr: Array<Int>): PokerHand {
+class PokerHandImpl(private val handRank: HandRank,
+                    private val valuationArr: Array<Int>): PokerHand {
+
     override fun valuationArr(): Array<Int> {
         return valuationArr
     }

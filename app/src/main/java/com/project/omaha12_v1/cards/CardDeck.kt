@@ -1,5 +1,3 @@
-
-
 package com.project.omaha12_v1.cards
 
 import java.util.*

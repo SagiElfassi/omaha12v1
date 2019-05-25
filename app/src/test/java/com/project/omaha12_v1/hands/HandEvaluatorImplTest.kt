@@ -1,10 +1,8 @@
 package com.project.omaha12_v1.hands
-import com.project.omaha12_v1.test.TestProperties
-import org.hamcrest.CoreMatchers.`is`
-import org.hamcrest.CoreMatchers.equalTo
-import org.junit.Assert.assertEquals
-import org.junit.Assert.assertThat
 
+import com.project.omaha12_v1.test.TestProperties
+import org.hamcrest.CoreMatchers.equalTo
+import org.junit.Assert.assertThat
 import org.junit.Test
 
 /**

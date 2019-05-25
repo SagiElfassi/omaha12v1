@@ -3,7 +3,6 @@ package com.project.omaha12_v1.dealers
 import com.project.omaha12_v1.cards.CardDeck
 import com.project.omaha12_v1.cards.PokerCard
 import com.project.omaha12_v1.players.Player
-import java.util.*
 
 interface Dealer {
     fun deal(players: Sequence<Player>): Int
