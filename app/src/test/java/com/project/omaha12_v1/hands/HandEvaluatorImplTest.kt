@@ -16,7 +16,7 @@ class HandEvaluatorImplTest {
 
     @Test
     fun `evaluate one pair hand`() {
-        val pairOfAces = TestProperties.aPairOfAces()
+        val pairOfAces = TestProperties.`a pair of aces with low cards`()
         val valuesArr = arrayOf(2, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0)
         val expectedResult: PokerHand = PokerHandImpl(HandRank.PAIR, valuesArr)
         val evaluationResult = handEvaluator.calcRank(pairOfAces)

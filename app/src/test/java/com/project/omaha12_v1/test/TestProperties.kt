@@ -62,9 +62,77 @@ class TestProperties {
         val threeOfSpade = PokerCard(Shape.SPADE, 3)
         val twoOfSpade   = PokerCard(Shape.SPADE, 2)
 
-        fun aPairOfAces(): Array<PokerCard> {
+        fun `a high card ace`(): Array<PokerCard> {
+            return arrayOf(aceOfClub, kingOfDiamond, sevenOfClub, eightOfClub, nineOfHeart
+            )
+        }
+
+        fun `a high card king`(): Array<PokerCard> {
+            return arrayOf(
+                kingOfDiamond, queenOfSpade, sevenOfClub, eightOfClub, nineOfHeart
+            )
+        }
+
+        fun `a pair of aces with low cards`(): Array<PokerCard> {
             return arrayOf(aceOfClub, aceOfDiamond, sevenOfClub, eightOfClub, nineOfHeart
             )
         }
+
+        fun `a pair of aces with hight cards`(): Array<PokerCard> {
+            return arrayOf(aceOfClub, aceOfDiamond, sevenOfClub, eightOfClub, nineOfHeart
+            )
+        }
+
+        fun `a pair of aces and pair of kings`(): Array<PokerCard> {
+            return arrayOf(aceOfClub, aceOfDiamond, kingOfClub, kingOfDiamond, nineOfHeart
+            )
+        }
+
+        fun `a three of a kind aces`(): Array<PokerCard> {
+            return arrayOf(aceOfClub, aceOfDiamond, aceOfHeart, kingOfDiamond, nineOfHeart
+            )
+        }
+
+        fun `a stright of 10 high`(): Array<PokerCard> {
+            return arrayOf(sixOfClub, sevenOfClub, eightOfDiamond, nineOfHeart, tenOfSpade
+            )
+        }
+
+        fun `a stright of ace high`(): Array<PokerCard> {
+            return arrayOf(tenOfSpade, jackOfClub, queenOfDiamond, kingOfClub, aceOfSpade
+            )
+        }
+
+        fun `a stright of five high`(): Array<PokerCard> {
+            return arrayOf(aceOfSpade, twoOfClub, threeOfClub, fourOfHeart, fiveOfHeart
+            )
+        }
+
+        fun `a flush of queen high`(): Array<PokerCard> {
+            return arrayOf(queenfClub, twoOfClub, threeOfClub, nineOfClub, tenOfClub
+            )
+        }
+
+        fun `a full house aces and kings`(): Array<PokerCard> {
+            return arrayOf(aceOfClub, aceOfDiamond, aceOfHeart, kingOfDiamond, kingOfClub
+            )
+        }
+
+        fun `a four of a king kings`(): Array<PokerCard> {
+            return arrayOf(kingOfClub, kingOfDiamond, kingOfHeart, kingOfSpade, nineOfClub
+            )
+        }
+
+        fun `a stright flush of five high`(): Array<PokerCard> {
+            return arrayOf(aceOfSpade, twoOfSpade, threeOfSpade, fourOfSpade, fiveOfSpade
+            )
+        }
+
+        fun `a royal flush`(): Array<PokerCard> {
+            return arrayOf(tenOfSpade, jackOfSpade, queenOfSpade, kingOfSpade, aceOfSpade
+            )
+        }
+
+
     }
 }
