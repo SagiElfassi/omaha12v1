@@ -29,7 +29,44 @@ class HandEvaluatorImpl : HandEvaluator {
             diamonds[i] + clubs[i] + spades[i] + hearts[i]
         }
 
-        return PokerHandImpl(HandRank.PAIR, valueArr)
+        when(isRoyalStraightOrFlush(diamonds)){
+            1 -> return PokerHandImpl(HandRank.FLUSH, valueArr)
+            2 -> return PokerHandImpl(HandRank.STRAIGHT_FLUSH, valueArr)
+            3 -> return PokerHandImpl(HandRank.ROYAL_FLUSH, valueArr)
+        }
+        when(isRoyalStraightOrFlush(clubs)){
+            1 -> return PokerHandImpl(HandRank.FLUSH, valueArr)
+            2 -> return PokerHandImpl(HandRank.STRAIGHT_FLUSH, valueArr)
+            3 -> return PokerHandImpl(HandRank.ROYAL_FLUSH, valueArr)
+        }
+        when(isRoyalStraightOrFlush(spades)){
+            1 -> return PokerHandImpl(HandRank.FLUSH, valueArr)
+            2 -> return PokerHandImpl(HandRank.STRAIGHT_FLUSH, valueArr)
+            3 -> return PokerHandImpl(HandRank.ROYAL_FLUSH, valueArr)
+        }
+        when(isRoyalStraightOrFlush(hearts)){
+            1 -> return PokerHandImpl(HandRank.FLUSH, valueArr)
+            2 -> return PokerHandImpl(HandRank.STRAIGHT_FLUSH, valueArr)
+            3 -> return PokerHandImpl(HandRank.ROYAL_FLUSH, valueArr)
+        }
 
+        return PokerHandImpl(HandRank.PAIR, valueArr)
+    }
+
+    private fun isRoyalStraightOrFlush(cards: IntArray): Int {
+        var result = 0
+        if (cards.sum() == 5) result += 1
+        if (isStraight(cards) && result == 1) result += 1
+        if (isRoyalStraight(cards) && result == 1) result += 2
+        return result
+    }
+
+    private fun isStraight(cards: IntArray): Boolean{
+        return false
+    }
+
+    private fun isRoyalStraight(cards: IntArray): Boolean{
+        if (cards[0] == 1 && cards[12] == 1 && cards[11] == 1 && cards[10] == 1 && cards[9] == 1) return true
+        return false
     }
 }
