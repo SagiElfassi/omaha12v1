@@ -56,8 +56,8 @@ class HandEvaluatorImpl : HandEvaluator {
     private fun isRoyalStraightOrFlush(cards: IntArray): Int {
         var result = 0
         if (cards.sum() == 5) result += 1
-        if (isStraight(cards) && result == 1) result += 1
-        if (isRoyalStraight(cards) && result == 1) result += 2
+        if (isStraight(cards)) result += 1
+        if (isRoyalStraight(cards)) result += 2
         return result
     }
 
