@@ -40,22 +40,16 @@ class HandEvaluatorImpl : HandEvaluator {
 
 
     private fun giveRankWhenNotFlushed(cards: Array<Int>): PokerHandImpl {
-        var ones = 0
-        var two = false
-        var three = false
+        val freeCards = cards.filter { i -> i == 1 }.sum()
+        val hasPair = cards.any { i -> i == 2 }
+        val hasThreeOfaKind = cards.any { i -> i == 3 }
 
-        for (value in cards) {
-            if (value == 1) ones += 1
-            if (value == 2) two = true
-            if (value == 3) three = true
-        }
-
-        return if(two && ones == 3)            PokerHandImpl(HandRank.PAIR, cards)
-        else   if(two && ones == 1)            PokerHandImpl(HandRank.TWO_PAIR, cards)
-        else   if(three && !two)               PokerHandImpl(HandRank.THREE_OF_KIND, cards)
+        return if(hasPair && freeCards == 3)            PokerHandImpl(HandRank.PAIR, cards)
+        else   if(hasPair && freeCards == 1)            PokerHandImpl(HandRank.TWO_PAIR, cards)
+        else   if(hasThreeOfaKind && !hasPair)               PokerHandImpl(HandRank.THREE_OF_KIND, cards)
         else   if(isStraight(cards))           PokerHandImpl(HandRank.STRAIGHT, cards)
-        else   if(three && two)                PokerHandImpl(HandRank.FULL_HOUSE, cards)
-        else   if(!three && !two && ones == 1) PokerHandImpl(HandRank.FOUR_OF_KIND, cards)
+        else   if(hasThreeOfaKind && hasPair)                PokerHandImpl(HandRank.FULL_HOUSE, cards)
+        else   if(!hasThreeOfaKind && !hasPair && freeCards == 1) PokerHandImpl(HandRank.FOUR_OF_KIND, cards)
         else                                   PokerHandImpl(HandRank.HIGH_CARD, cards)
     }
 
@@ -81,4 +75,5 @@ class HandEvaluatorImpl : HandEvaluator {
     private fun isRoyalStraight(cards: Array<Int>): Boolean {
         return cards[0] == 1 && cards[12] == 1 && cards[11] == 1 && cards[10] == 1 && cards[9] == 1
     }
+
 }
