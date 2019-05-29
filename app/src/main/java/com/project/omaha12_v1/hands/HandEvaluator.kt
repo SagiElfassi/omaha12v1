@@ -45,13 +45,15 @@ class HandEvaluatorImpl : HandEvaluator {
         val hasPair = cards.any { i -> i == 2 }
         val hasThreeOfaKind = cards.any { i -> i == 3 }
 
-        return if(hasPair && freeCards == 3)                      PAIR
-        else   if(hasPair && freeCards == 1)                      TWO_PAIR
-        else   if(hasThreeOfaKind && !hasPair)                    THREE_OF_KIND
-        else   if(isStraight(cards))                              STRAIGHT
-        else   if(hasThreeOfaKind && hasPair)                     FULL_HOUSE
-        else   if(!hasThreeOfaKind && !hasPair && freeCards == 1) FOUR_OF_KIND
-        else                                                      HIGH_CARD
+        return when {
+            hasPair && freeCards == 3                      -> PAIR
+            hasPair && freeCards == 1                      -> TWO_PAIR
+            hasThreeOfaKind && !hasPair                    -> THREE_OF_KIND
+            isStraight(cards)                              -> STRAIGHT
+            hasThreeOfaKind && hasPair                     -> FULL_HOUSE
+            !hasThreeOfaKind && !hasPair && freeCards == 1 -> FOUR_OF_KIND
+            else                                           -> HIGH_CARD
+        }
     }
 
     private fun isRoyalStraightOrFlush(cards: Array<Int>): HandRank? {
