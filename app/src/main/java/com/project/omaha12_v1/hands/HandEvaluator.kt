@@ -2,6 +2,7 @@ package com.project.omaha12_v1.hands
 
 import com.project.omaha12_v1.cards.PokerCard
 import com.project.omaha12_v1.cards.Shape
+import com.project.omaha12_v1.hands.HandRank.*
 
 interface HandEvaluator {
 
@@ -32,33 +33,33 @@ class HandEvaluatorImpl : HandEvaluator {
         val allShapes = arrayOf(diamonds, clubs, spades, hearts)
 
         for (sameShapeCards in allShapes) {
-            isRoyalStraightOrFlush(cards = sameShapeCards)?.let { return it }
+            isRoyalStraightOrFlush(cards = sameShapeCards)?.let { return PokerHandImpl(it, sameShapeCards) }
         }
 
-        return giveRankWhenNotFlushed(valueArr)
+        return PokerHandImpl(giveRankWhenNotFlushed(valueArr), valueArr)
     }
 
 
-    private fun giveRankWhenNotFlushed(cards: Array<Int>): PokerHandImpl {
+    private fun giveRankWhenNotFlushed(cards: Array<Int>): HandRank {
         val freeCards = cards.filter { i -> i == 1 }.sum()
         val hasPair = cards.any { i -> i == 2 }
         val hasThreeOfaKind = cards.any { i -> i == 3 }
 
-        return if(hasPair && freeCards == 3)                      PokerHandImpl(HandRank.PAIR, cards)
-        else   if(hasPair && freeCards == 1)                      PokerHandImpl(HandRank.TWO_PAIR, cards)
-        else   if(hasThreeOfaKind && !hasPair)                    PokerHandImpl(HandRank.THREE_OF_KIND, cards)
-        else   if(isStraight(cards))                              PokerHandImpl(HandRank.STRAIGHT, cards)
-        else   if(hasThreeOfaKind && hasPair)                     PokerHandImpl(HandRank.FULL_HOUSE, cards)
-        else   if(!hasThreeOfaKind && !hasPair && freeCards == 1) PokerHandImpl(HandRank.FOUR_OF_KIND, cards)
-        else                                                      PokerHandImpl(HandRank.HIGH_CARD, cards)
+        return if(hasPair && freeCards == 3)                      PAIR
+        else   if(hasPair && freeCards == 1)                      TWO_PAIR
+        else   if(hasThreeOfaKind && !hasPair)                    THREE_OF_KIND
+        else   if(isStraight(cards))                              STRAIGHT
+        else   if(hasThreeOfaKind && hasPair)                     FULL_HOUSE
+        else   if(!hasThreeOfaKind && !hasPair && freeCards == 1) FOUR_OF_KIND
+        else                                                      HIGH_CARD
     }
 
-    private fun isRoyalStraightOrFlush(cards: Array<Int>): PokerHand? {
+    private fun isRoyalStraightOrFlush(cards: Array<Int>): HandRank? {
         if(cards.sum() == 5) {
            return when {
-               isRoyalStraight(cards) -> PokerHandImpl(HandRank.ROYAL_FLUSH, cards)
-               isStraight(cards)      -> PokerHandImpl(HandRank.STRAIGHT_FLUSH, cards)
-               else                   -> PokerHandImpl(HandRank.FLUSH, cards)
+               isRoyalStraight(cards) -> ROYAL_FLUSH
+               isStraight(cards)      -> STRAIGHT_FLUSH
+               else                   -> FLUSH
            }
         }
         return null
