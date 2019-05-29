@@ -74,7 +74,7 @@ class TestProperties {
         }
 
         fun `a pair of aces with low cards`(): Array<PokerCard> {
-            return arrayOf(aceOfClub, aceOfDiamond, sevenOfClub, eightOfClub, nineOfHeart
+            return arrayOf(aceOfClub, aceOfDiamond, twoOfClub, threeOfClub, fourOfClub
             )
         }
 
