@@ -44,13 +44,13 @@ class HandEvaluatorImpl : HandEvaluator {
         val hasPair = cards.any { i -> i == 2 }
         val hasThreeOfaKind = cards.any { i -> i == 3 }
 
-        return if(hasPair && freeCards == 3)            PokerHandImpl(HandRank.PAIR, cards)
-        else   if(hasPair && freeCards == 1)            PokerHandImpl(HandRank.TWO_PAIR, cards)
-        else   if(hasThreeOfaKind && !hasPair)               PokerHandImpl(HandRank.THREE_OF_KIND, cards)
-        else   if(isStraight(cards))           PokerHandImpl(HandRank.STRAIGHT, cards)
-        else   if(hasThreeOfaKind && hasPair)                PokerHandImpl(HandRank.FULL_HOUSE, cards)
+        return if(hasPair && freeCards == 3)                      PokerHandImpl(HandRank.PAIR, cards)
+        else   if(hasPair && freeCards == 1)                      PokerHandImpl(HandRank.TWO_PAIR, cards)
+        else   if(hasThreeOfaKind && !hasPair)                    PokerHandImpl(HandRank.THREE_OF_KIND, cards)
+        else   if(isStraight(cards))                              PokerHandImpl(HandRank.STRAIGHT, cards)
+        else   if(hasThreeOfaKind && hasPair)                     PokerHandImpl(HandRank.FULL_HOUSE, cards)
         else   if(!hasThreeOfaKind && !hasPair && freeCards == 1) PokerHandImpl(HandRank.FOUR_OF_KIND, cards)
-        else                                   PokerHandImpl(HandRank.HIGH_CARD, cards)
+        else                                                      PokerHandImpl(HandRank.HIGH_CARD, cards)
     }
 
     private fun isRoyalStraightOrFlush(cards: Array<Int>): PokerHand? {
