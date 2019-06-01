@@ -11,10 +11,10 @@ interface ShowDownEvaluator {
 
 class ShowDownEvaluatorImpl : ShowDownEvaluator {
     override fun evaluate(communityCards: Array<PokerCard>, omahaHand: OmahaHand): PokerHand {
-        return getAllHandsPermotation(communityCards, omahaHand).sortedWith(CompareHands).first()
+        return getAllHandsPermutation(communityCards, omahaHand).sortedWith(CompareHands).first()
     }
 
-    private fun getAllHandsPermotation(hand: Array<PokerCard>, omahaHand: OmahaHand): List<PokerHand> {
+    private fun getAllHandsPermutation(hand: Array<PokerCard>, omahaHand: OmahaHand): List<PokerHand> {
         return emptyList()
     }
 
