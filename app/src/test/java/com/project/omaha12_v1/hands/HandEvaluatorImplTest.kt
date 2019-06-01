@@ -78,7 +78,7 @@ class HandEvaluatorImplTest {
     fun `evaluate kare hand`() {
         val four_of_kind = TestProperties.`a four of a king kings`()
         val valuesArr = arrayOf(0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 4)
-        val expectedResult: PokerHand = PokerHandImpl(HandRank.FOUR_OF_KIND, valuesArr)
+        val expectedResult: PokerHand =     PokerHandImpl(HandRank.FOUR_OF_KIND, valuesArr)
         val evaluationResult = handEvaluator.calcRank(four_of_kind)
 
         assertThat(evaluationResult.handRank().name, equalTo(expectedResult.handRank().name))

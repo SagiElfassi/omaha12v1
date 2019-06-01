@@ -109,8 +109,7 @@ class TestProperties {
         }
 
         fun `a flush of queen high`(): Array<PokerCard> {
-            return arrayOf(queenfClub, twoOfClub, threeOfClub, nineOfClub, tenOfClub
-            )
+            return arrayOf(queenfClub, twoOfClub, threeOfClub, nineOfClub, tenOfClub)
         }
 
         fun `a full house aces and kings`(): Array<PokerCard> {

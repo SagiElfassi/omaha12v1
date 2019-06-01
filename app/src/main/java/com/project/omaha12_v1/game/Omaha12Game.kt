@@ -9,6 +9,14 @@ class Omaha12Game(val dealer: Dealer, var gameBoard: GameBoard) {
         println(dealer.getDeck())
         dealer.shuffle()
         println(dealer.getDeck())
+
+        // Draw...
+
+        // Open flops
+
+        // Open turns and rivers
+
+        // Announce winner
     }
 
     fun open3Flops() {
