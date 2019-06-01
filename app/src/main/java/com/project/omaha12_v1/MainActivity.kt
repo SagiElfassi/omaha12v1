@@ -7,6 +7,7 @@ import com.project.omaha12_v1.board.GameBoard
 import com.project.omaha12_v1.cards.CardDeckFactory
 import com.project.omaha12_v1.dealers.DealerImpl
 import com.project.omaha12_v1.game.Omaha12Game
+import com.project.omaha12_v1.hands.ShowDownEvaluatorImpl
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -19,7 +20,8 @@ class MainActivity : AppCompatActivity() {
         button1.setOnClickListener {
             val game = Omaha12Game(
                 DealerImpl(
-                    cards
+                    cards,
+                    ShowDownEvaluatorImpl()
                 ), GameBoard(null)
             ).startNewGame()
             Toast.makeText(this, "${cards.takeCard().value}", Toast.LENGTH_LONG).show()

@@ -2,12 +2,10 @@ package com.project.omaha12_v1.hands
 
 import com.project.omaha12_v1.cards.PokerCard
 
-
 interface ShowDownEvaluator {
 
     fun evaluate(communityCards: Array<PokerCard>, omahaHand: OmahaHand): PokerHand
 }
-
 
 class ShowDownEvaluatorImpl : ShowDownEvaluator {
     override fun evaluate(communityCards: Array<PokerCard>, omahaHand: OmahaHand): PokerHand {
@@ -17,7 +15,6 @@ class ShowDownEvaluatorImpl : ShowDownEvaluator {
     private fun getAllHandsPermutation(hand: Array<PokerCard>, omahaHand: OmahaHand): List<PokerHand> {
         return emptyList()
     }
-
 }
 
 class CompareHands {

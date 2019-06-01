@@ -21,11 +21,10 @@ interface Dealer {
 }
 
 class DealerImpl(private val cardDeck: CardDeck,
-                 val showDownEvaluator: ShowDownEvaluator
-): Dealer {
+                 private val showDownEvaluator: ShowDownEvaluator): Dealer {
+
     override fun calcBestHand(communityCards: Array<PokerCard>, omahaHands: List<OmahaHand>) {
         omahaHands.map { omahaHand -> showDownEvaluator.evaluate(communityCards, omahaHand) }
-
     }
 
     override fun getDeck(): CardDeck {
