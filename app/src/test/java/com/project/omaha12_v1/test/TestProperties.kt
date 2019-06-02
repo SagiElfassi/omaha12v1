@@ -132,6 +132,12 @@ class TestProperties {
             )
         }
 
-
+        fun `a random omaha hand`(): Array<PokerCard> {
+            return arrayOf(tenOfSpade, jackOfSpade, queenOfSpade, kingOfSpade
+            )
+        }
+        fun `a random board`(): Array<PokerCard> {
+            return arrayOf(queenfClub, twoOfClub, threeOfClub, nineOfClub, tenOfClub)
+        }
     }
 }
