@@ -11,14 +11,14 @@ import org.junit.Test
  */
 class AllCardsPermutationTest {
 
-    private val showDownEvaluator: ShowDownEvaluator = ShowDownEvaluatorImpl()
+    private val showDownEvaluator: ShowDownEvaluatorImpl = ShowDownEvaluatorImpl()
 
     @Test
     fun `give list size to be sixty`() {
         val Borad = TestProperties.`a random board`()
         val omahaHand = OmahaHand(TestProperties.`a random omaha hand`().toList())
-        val evaluationResult = ShowDownEvaluatorImpl.all
+        var evaluationResult = showDownEvaluator.getAllHandsPermutation(Borad,omahaHand)
 
-        assertThat(, equalTo(60))
+        assertThat(evaluationResult.size, equalTo(60))
     }
 }
