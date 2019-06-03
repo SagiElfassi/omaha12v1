@@ -37,16 +37,16 @@ class PokerHandCompareTest {
 
     @Test
     fun `ace high is better than king high`() {
-        val aceHigh = PokerHandImpl(HandRank.ROYAL_FLUSH, arrayOf(1, 0, 0, 1, 1, 0, 0, 1, 0, 0, 0, 0, 1))
-        val kingHigh = PokerHandImpl(HandRank.ROYAL_FLUSH, arrayOf(1, 1, 0, 1, 1, 0, 0, 1, 0, 0, 0, 0, 0))
+        val aceHigh = PokerHandImpl(HandRank.HIGH_CARD, arrayOf(1, 0, 0, 1, 1, 0, 0, 1, 0, 0, 0, 0, 1))
+        val kingHigh = PokerHandImpl(HandRank.HIGH_CARD, arrayOf(0, 1, 0, 1, 1, 0, 0, 1, 0, 0, 0, 0, 1))
 
         assertThat(aceHigh.compare(kingHigh), equalTo(1))
     }
 
     @Test
     fun `royal straight is better than king high straight`() {
-        val royalStraight = PokerHandImpl(HandRank.STRAIGHT, arrayOf(1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1))
-        val kingHighStraight = PokerHandImpl(HandRank.STRAIGHT, arrayOf(1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0))
+        val royalStraight = PokerHandImpl(HandRank.STRAIGHT, arrayOf(1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1))
+        val kingHighStraight = PokerHandImpl(HandRank.STRAIGHT, arrayOf(0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1))
 
         assertThat(kingHighStraight.compare(royalStraight), equalTo(-1))
     }
@@ -54,10 +54,8 @@ class PokerHandCompareTest {
     @Test
     fun `ace flush is better than king flush`() {
         val aceFlush = PokerHandImpl(HandRank.FLUSH, arrayOf(1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1))
-        val kingFlush = PokerHandImpl(HandRank.FLUSH, arrayOf(1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0))
+        val kingFlush = PokerHandImpl(HandRank.FLUSH, arrayOf(0, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 1))
 
         assertThat(kingFlush.compare(aceFlush), equalTo(-1))
     }
-
-
 }

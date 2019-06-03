@@ -16,14 +16,14 @@ class ShowDownEvaluatorImpl : ShowDownEvaluator {
 
     fun getAllHandsPermutation(communityCards: Array<PokerCard>, omahaHand: OmahaHand): List<PokerHand> {
         val allHandPermutations = mutableListOf<PokerHand>()
-        var handEvaluator: HandEvaluator = HandEvaluatorImpl()
+        val handEvaluator: HandEvaluator = HandEvaluatorImpl()
 
         for (i in 0..omahaHand.cards.size - 2) {
             for (j in (i + 1)..omahaHand.cards.size - 1) {
                 for (k in 0..communityCards.size - 3) {
                     for (l in (k + 1)..communityCards.size - 2) {
-                        for (m in (l + 1)..communityCards.size - 1) {
-                            var tempFiveCardsCombination = arrayOf(
+                        for (m in (l + 1) until communityCards.size) {
+                            val tempFiveCardsCombination = arrayOf(
                                 omahaHand.cards[i], omahaHand.cards[j],
                                 communityCards[k], communityCards[l], communityCards[m]
                             )
@@ -39,6 +39,6 @@ class ShowDownEvaluatorImpl : ShowDownEvaluator {
 
 class CompareHands {
     companion object : Comparator<PokerHand> {
-        override fun compare(a: PokerHand, b: PokerHand): Int = a.compare(b)
+        override fun compare(a: PokerHand, b: PokerHand): Int = b.compare(a)
     }
 }

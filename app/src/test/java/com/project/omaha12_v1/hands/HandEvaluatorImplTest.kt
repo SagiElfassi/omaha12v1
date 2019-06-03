@@ -88,7 +88,7 @@ class HandEvaluatorImplTest {
 
     @Test
     fun `evaluate straight flush hand`() {
-        val straight_flush = TestProperties.`a stright flush of five high`()
+        val straight_flush = TestProperties.`a straight flush of five high`()
         val valuesArr = arrayOf(1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0)
         val expectedResult: PokerHand = PokerHandImpl(HandRank.STRAIGHT_FLUSH, valuesArr)
         val evaluationResult = handEvaluator.calcRank(straight_flush)
@@ -154,7 +154,7 @@ class HandEvaluatorImplTest {
 
     @Test
     fun `evaluate one pair 1`() {
-        val full_house = TestProperties.`a pair of aces with hight cards`()
+        val full_house = TestProperties.`a pair of aces with high cards`()
         val valuesArr = arrayOf(2, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0)
         val expectedResult: PokerHand = PokerHandImpl(HandRank.PAIR, valuesArr)
         val evaluationResult = handEvaluator.calcRank(full_house)
