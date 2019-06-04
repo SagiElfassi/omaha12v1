@@ -33,10 +33,10 @@ class HandEvaluatorImpl : HandEvaluator {
         val allShapes = arrayOf(diamonds, clubs, spades, hearts)
 
         for (sameShapeCards in allShapes) {
-            isRoyalStraightOrFlush(cards = sameShapeCards)?.let { return PokerHandImpl(it, sameShapeCards) }
+            isRoyalStraightOrFlush(cards = sameShapeCards)?.let { return PokerHandImpl(it, sameShapeCards,hand) }
         }
 
-        return PokerHandImpl(giveRankWhenNotFlushed(valueArr), valueArr)
+        return PokerHandImpl(giveRankWhenNotFlushed(valueArr), valueArr, hand)
     }
 
 

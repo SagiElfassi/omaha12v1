@@ -23,7 +23,7 @@ class AllCardsPermutationTest {
     fun `evaluate pair hand`() {
         val board = TestProperties.`board of QcJh8h 3h 2c`()
         val omahaHand = OmahaHand(TestProperties.`omaha hand KhKd5d6d`().toList())
-        val expectedHand = PokerHandImpl(HandRank.PAIR, arrayOf(0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 1, 2))
+        val expectedHand = PokerHandImpl(HandRank.PAIR, arrayOf(0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 1, 2), arrayOf())
 
         val evaluationResult = showDownEvaluator.evaluate(board, omahaHand)
 
@@ -35,7 +35,7 @@ class AllCardsPermutationTest {
     fun `evaluate straight hand`() {
         val board = TestProperties.`board of QcJh8h 3h 2c`()
         val omahaHand = OmahaHand(TestProperties.`omaha hand Th9d5d6d`().toList())
-        val expectedHand = PokerHandImpl(HandRank.STRAIGHT, arrayOf(0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0))
+        val expectedHand = PokerHandImpl(HandRank.STRAIGHT, arrayOf(0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 0), arrayOf())
 
         val evaluationResult = showDownEvaluator.evaluate(board, omahaHand)
 
@@ -47,7 +47,7 @@ class AllCardsPermutationTest {
     fun `evaluate flush`() {
         val board = TestProperties.`board of QcJh8h 3h 2c`()
         val omahaHand = OmahaHand(TestProperties.`omaha hand Th9h5d6d`().toList())
-        val expectedHand = PokerHandImpl(HandRank.FLUSH, arrayOf(0, 0, 1, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0))
+        val expectedHand = PokerHandImpl(HandRank.FLUSH, arrayOf(0, 0, 1, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0), arrayOf())
 
         val evaluationResult = showDownEvaluator.evaluate(board, omahaHand)
 
@@ -60,7 +60,7 @@ class AllCardsPermutationTest {
     fun `evaluate full house`() {
         val board = TestProperties.`board of QcQhQd Qs 2c`()
         val omahaHand = OmahaHand(TestProperties.`omaha hand KhKd5d6d`().toList())
-        val expectedHand = PokerHandImpl(HandRank.FULL_HOUSE, arrayOf(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 2))
+        val expectedHand = PokerHandImpl(HandRank.FULL_HOUSE, arrayOf(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 2), arrayOf())
 
         val evaluationResult = showDownEvaluator.evaluate(board, omahaHand)
 
