@@ -1,13 +1,21 @@
 package com.project.omaha12_v1.hands
 
+import com.project.omaha12_v1.cards.PokerCard
+
 interface PokerHand {
     fun handRank(): HandRank
     fun valuationArr(): Array<Int>
+    fun fiveCards(): Array<PokerCard>
     fun compare(other: PokerHand): Int
 }
 
 class PokerHandImpl(private val handRank: HandRank,
-                    private val valuationArr: Array<Int>) : PokerHand {
+                    private val valuationArr: Array<Int>,
+                    private val fiveCards: Array<PokerCard>) : PokerHand {
+
+    override fun fiveCards(): Array<PokerCard> {
+        return fiveCards
+    }
 
     override fun valuationArr(): Array<Int> {
         return valuationArr
