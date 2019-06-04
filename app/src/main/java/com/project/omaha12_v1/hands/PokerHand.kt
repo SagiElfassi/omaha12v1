@@ -42,4 +42,8 @@ class PokerHandImpl(private val handRank: HandRank,
         }
         return 0
     }
+
+    override fun toString(): String {
+        return fiveCards.map { card -> card.toString() }.toString()
+    }
 }

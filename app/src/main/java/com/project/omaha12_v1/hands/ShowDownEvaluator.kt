@@ -19,7 +19,7 @@ class ShowDownEvaluatorImpl : ShowDownEvaluator {
         val handEvaluator: HandEvaluator = HandEvaluatorImpl()
 
         for (i in 0..omahaHand.cards.size - 2) {
-            for (j in (i + 1)..omahaHand.cards.size - 1) {
+            for (j in (i + 1) until omahaHand.cards.size) {
                 for (k in 0..communityCards.size - 3) {
                     for (l in (k + 1)..communityCards.size - 2) {
                         for (m in (l + 1) until communityCards.size) {
