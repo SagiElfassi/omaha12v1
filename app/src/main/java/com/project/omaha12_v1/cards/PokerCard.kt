@@ -1,6 +1,30 @@
 package com.project.omaha12_v1.cards
 
 data class PokerCard(val shape: Shape, val value: Int) {
+    companion object {
+        fun fromString(s: String): PokerCard? {
+            if(s.length != 2) return null
+
+            val cardValue = when (s.first()) {
+                'A' -> 1
+                'T' -> 10
+                'J' -> 11
+                'Q' -> 12
+                'K' -> 13
+                else -> s.first() - '0'
+            }
+
+            val cardShape = when (s[1]) {
+                'd' -> Shape.DIAMOND
+                'c' -> Shape.CLUB
+                's' -> Shape.SPADE
+                'h' -> Shape.HEART
+                else -> null
+            }
+
+            return PokerCard(cardShape!!, cardValue)
+        }
+    }
 
     override fun toString(): String {
         val cardValue = when (value) {
