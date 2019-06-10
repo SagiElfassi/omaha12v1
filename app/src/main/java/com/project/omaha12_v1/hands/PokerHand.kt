@@ -9,9 +9,11 @@ interface PokerHand {
     fun compare(other: PokerHand): Int
 }
 
-class PokerHandImpl(private val handRank: HandRank,
-                    private val valuationArr: Array<Int>,
-                    private val fiveCards: Array<PokerCard>) : PokerHand {
+class PokerHandImpl(
+    private val handRank: HandRank,
+    private val valuationArr: Array<Int>,
+    private val fiveCards: Array<PokerCard>
+) : PokerHand {
 
     override fun fiveCards(): Array<PokerCard> {
         return fiveCards
@@ -44,6 +46,14 @@ class PokerHandImpl(private val handRank: HandRank,
     }
 
     override fun toString(): String {
-        return fiveCards.map { card -> card.toString() }.toString()
+        return HandConverter.toString(fiveCards.toList())
     }
+
+    companion object {
+        fun fromString(str: String): PokerHand? {
+            return if (str.length != 10) null
+            else HandEvaluatorImpl().calcRank(HandConverter.fromString(str).toTypedArray())
+        }
+    }
+
 }
