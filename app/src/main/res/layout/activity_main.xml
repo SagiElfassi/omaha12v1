@@ -20,6 +20,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" tools:layout_editor_absoluteY="91dp"
             tools:layout_editor_absoluteX="78dp" android:id="@+id/button1"
-            style="@style/Widget.AppCompat.Button.Borderless.Colored"/>
+            style="@style/Widget.AppCompat.Button.Borderless.Colored" tools:ignore="MissingConstraints"/>
 
 </android.support.constraint.ConstraintLayout>
