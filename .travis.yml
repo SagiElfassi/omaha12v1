@@ -1,7 +1,12 @@
 language: android
-
+dist: trusty
 jdk:
   - oraclejdk8
+
+before_install:
+  - chmod +x gradlew
+  - mkdir "$ANDROID_HOME/licenses" || true
+  - cp ./licenses/* "$ANDROID_HOME/licenses/"
 
 env:
   global:
