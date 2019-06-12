@@ -13,6 +13,7 @@ import org.junit.Assert.*
  *
  * See [testing documentation](http://d.android.com/tools/testing).
  */
+/*
 @RunWith(AndroidJUnit4::class)
 class ExampleInstrumentedTest {
     @Test
@@ -22,3 +23,4 @@ class ExampleInstrumentedTest {
         assertEquals("com.example.omaha12_v1", appContext.packageName)
     }
 }
+*/
