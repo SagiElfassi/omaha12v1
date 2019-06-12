@@ -16,10 +16,13 @@ class HandConverterTest {
 
     @Test
     fun `provide poker hand from string`() {
-        val three_kind = TestProperties.`a three of a kind aces`()
+        val threeOfaKind = TestProperties.`a three of a kind aces`()
         val valuesArr = arrayOf(3, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1)
-        val expectedResult: PokerHand = PokerHandImpl(HandRank.THREE_OF_KIND, valuesArr,three_kind)
+        val expectedResult: PokerHand = PokerHandImpl(HandRank.THREE_OF_KIND, valuesArr,threeOfaKind)
+        val result =PokerHandImpl.fromString("AcAdAhKd9h")!!
 
-        assertThat(PokerHandImpl.fromString("AcAdAhKd9h")!!, equalTo(expectedResult))
+        assertThat(result.handRank().name, equalTo(expectedResult.handRank().name))
+        assertThat(result.valuationArr(), equalTo(expectedResult.valuationArr()))
+        assertThat(result.fiveCards(), equalTo(expectedResult.fiveCards()))
     }
 }
