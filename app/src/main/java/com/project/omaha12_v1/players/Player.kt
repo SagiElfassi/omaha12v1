@@ -12,13 +12,19 @@ interface Player {
     fun getFirstFlopCards(): List<PokerCard>
     fun getSecondFlopCards(): List<PokerCard>
     fun getThirdFlopCards(): List<PokerCard>
+
+    fun name(): String
 }
 
-class PlayerImpl(private val name: String,
+class PlayerImpl(val name: String,
                  private var crads: List<PokerCard>,
                  private var firstFlopCards: List<PokerCard>,
                  private var secondFlopCards: List<PokerCard>,
                  private var thirdFlopCards: List<PokerCard>): Player {
+
+    override fun takeCards(cards: List<PokerCard>) {
+        this.crads = cards
+    }
 
     override fun getFirstFlopCards(): List<PokerCard> {
         return firstFlopCards
@@ -29,11 +35,6 @@ class PlayerImpl(private val name: String,
     }
 
     override fun getThirdFlopCards(): List<PokerCard> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-
-    override fun takeCards(cards: List<PokerCard>) {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
@@ -48,5 +49,11 @@ class PlayerImpl(private val name: String,
     override fun setCardToThirdFlop(cardIndex: Int) {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
+
+    override fun name(): String {
+        return name
+    }
+
+
 
 }
