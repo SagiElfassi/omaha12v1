@@ -1,9 +1,11 @@
 package com.project.omaha12_v1.game
 
 import com.project.omaha12_v1.board.GameBoard
+import com.project.omaha12_v1.cards.PokerCard
 import com.project.omaha12_v1.dealers.Dealer
 import com.project.omaha12_v1.hands.OmahaHand
 import com.project.omaha12_v1.players.Player
+import kotlin.reflect.KFunction1
 
 class Omaha12Game(val dealer: Dealer, val gameBoard: GameBoard, val players: List<Player>) {
 
@@ -26,31 +28,29 @@ class Omaha12Game(val dealer: Dealer, val gameBoard: GameBoard, val players: Lis
     }
 
     fun calculateResult(): GameResult {
-        val firstKooBestHand = dealer.calcBestHand(
-            gameBoard.firstKoo().toTypedArray(),
-            players.map { player -> OmahaHand(player.getFirstFlopCards()) }
-        )
 
-        val secondKooBestHand = dealer.calcBestHand(
-            gameBoard.firstKoo().toTypedArray(),
-            players.map { player -> OmahaHand(player.getSecondFlopCards()) }
-        )
+        val firstKooResults = getKooResult(gameBoard.firstKoo(), Player::getFirstFlopCards)
+        val secondKooResults = getKooResult(gameBoard.secondKoo(), Player::getSecondFlopCards)
+        val thirdKooResults = getKooResult(gameBoard.thirdKoo(), Player::getThirdFlopCards)
 
-        val thirdKooBestHand = dealer.calcBestHand(
-            gameBoard.firstKoo().toTypedArray(),
-            players.map { player -> OmahaHand(player.getThirdFlopCards()) }
-        )
 
-        val firstKooResults = players.filter { player -> OmahaHand(player.getFirstFlopCards()) == firstKooBestHand.second }
-            .map { PlayerResult(it.name(), 1) }
-        val secondKooResult = players.filter { player -> OmahaHand(player.getSecondFlopCards()) == secondKooBestHand.second }
-            .map { PlayerResult(it.name(), 1) }
-        val thirdKooResult = players.filter { player -> OmahaHand(player.getThirdFlopCards()) == thirdKooBestHand.second }
-            .map { PlayerResult(it.name(), 1) }
 
-        //GameResult(listOf(firstKooResults, secondKooResult, thirdKooResult).map{it.map { it.resultsPoints }}.foldRight(listOf(),)
-        return GameResult(listOf())
+        return GameResult(listOf(firstKooResults, secondKooResults, thirdKooResults).flatten()
+            .groupBy { it.playerId }
+            .map { PlayerResult(it.key, it.value.map { it.resultsPoints }.fold(0) { total, next -> total + next})})
     }
+
+    private fun getKooResult(kooBoardCards: List<PokerCard>, getPlayerKooHand: KFunction1<Player, List<PokerCard>>): List<PlayerResult> {
+        val kooBestHand = dealer.calcBestHand(
+            kooBoardCards.toTypedArray(),
+            players.map { player -> OmahaHand(getPlayerKooHand(player)) })
+
+        val firstKooResults = players.filter { OmahaHand(getPlayerKooHand(it)) == kooBestHand.second }
+            .map { PlayerResult(it.name(), 1) }
+
+        return firstKooResults.map { it.copy(resultsPoints = it.resultsPoints/firstKooResults.size) }
+    }
+
 }
 
 data class GameResult(val playersResult: List<PlayerResult>)
