@@ -4,10 +4,12 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.widget.Toast
 import com.project.omaha12_v1.board.GameBoard
+import com.project.omaha12_v1.board.GameBoardImpl
 import com.project.omaha12_v1.cards.CardDeckFactory
 import com.project.omaha12_v1.dealers.DealerImpl
 import com.project.omaha12_v1.game.Omaha12Game
 import com.project.omaha12_v1.hands.ShowDownEvaluatorImpl
+import com.project.omaha12_v1.players.PlayerImpl
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -16,13 +18,14 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         val cards = CardDeckFactory().build()
+        val players = listOf(PlayerImpl("Alonm", listOf(), listOf(), listOf(), listOf()),
+            PlayerImpl("Sagia", listOf(), listOf(), listOf(), listOf()))
 
         button1.setOnClickListener {
             val game = Omaha12Game(
-                DealerImpl(
-                    cards,
-                    ShowDownEvaluatorImpl()
-                ), GameBoard(null)
+                DealerImpl(cards, ShowDownEvaluatorImpl()),
+                GameBoardImpl(),
+                players
             ).startNewGame()
             Toast.makeText(this, "${cards.takeCard().value}", Toast.LENGTH_LONG).show()
         }

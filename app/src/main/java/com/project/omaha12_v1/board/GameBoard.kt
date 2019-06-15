@@ -23,6 +23,8 @@ class GameBoardImpl(
     val secondKoo: List<PokerCard>,
     val thirdKoo: List<PokerCard>) : GameBoard {
 
+    constructor() : this (listOf(), listOf(), listOf())
+
     override fun putThreeFlops(
         firstKoo: List<PokerCard>,
         secondKoo: List<PokerCard>,
