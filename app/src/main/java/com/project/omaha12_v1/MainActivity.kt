@@ -1,9 +1,9 @@
 package com.project.omaha12_v1
 
+import android.content.Intent
+import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.widget.Toast
-import com.project.omaha12_v1.board.GameBoard
 import com.project.omaha12_v1.board.GameBoardImpl
 import com.project.omaha12_v1.cards.CardDeckFactory
 import com.project.omaha12_v1.dealers.DealerImpl
@@ -16,20 +16,24 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        requestedOrientation = (ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE)
         setContentView(R.layout.activity_main)
+
+
         val cards = CardDeckFactory().build()
-        val players = listOf(PlayerImpl("Alonm", listOf(), listOf(), listOf(), listOf()),
-            PlayerImpl("Sagia", listOf(), listOf(), listOf(), listOf()))
+        val players = listOf(
+            PlayerImpl("Alonm", listOf(), listOf(), listOf(), listOf()),
+            PlayerImpl("Sagia", listOf(), listOf(), listOf(), listOf())
+        )
 
-        button1.setOnClickListener {
-            val game = Omaha12Game(
-                DealerImpl(cards, ShowDownEvaluatorImpl()),
-                GameBoardImpl(),
-                players
-            ).startNewGame()
-            Toast.makeText(this, "${cards.takeCard().value}", Toast.LENGTH_LONG).show()
+        StartNewGame.setOnClickListener {
+            val intent = Intent(this, GameScreen::class.java)
+            startActivity(intent)
         }
+        val game = Omaha12Game(
+            DealerImpl(cards, ShowDownEvaluatorImpl()),
+            GameBoardImpl(),
+            players
+        ).startNewGame()
     }
-
-
 }
