@@ -12,6 +12,7 @@ class GameScreen : AppCompatActivity() {
         requestedOrientation =  (ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE)
         setContentView(R.layout.game_screen)
 
-        Card1.text = "AceSpade"
+        card1.text = "AceSpade"
+        card2.text = "AlonBeitz"
     }
 }

@@ -5,20 +5,22 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context="com.project.omaha12_v1.GameScreen">
+        tools:context="com.project.omaha12_v1.GameScreen"
+        android:background="@drawable/poker_table1"
+>
 
     <TextView
             android:text="TextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/card2" app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginLeft="56dp" app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginStart="56dp" android:layout_marginBottom="17dp"/>
+            android:layout_marginLeft="228dp" app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginStart="228dp" android:layout_marginBottom="140dp"/>
     <TextView
             android:text="TextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/Card1" app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginLeft="56dp" app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_marginStart="56dp" android:layout_marginBottom="17dp"/>
+            android:id="@+id/card1" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginLeft="124dp" app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginStart="124dp" android:layout_marginBottom="140dp"/>
 </android.support.constraint.ConstraintLayout>
