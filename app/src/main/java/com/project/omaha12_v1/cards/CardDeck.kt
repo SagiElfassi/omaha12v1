@@ -3,7 +3,7 @@ package com.project.omaha12_v1.cards
 import java.util.*
 
 interface CardDeck {
-    fun shuffle(): Unit
+    fun shuffle(): CardDeckImpl
     fun takeCard(): PokerCard
 }
 
@@ -12,8 +12,10 @@ class CardDeckImpl(val allCards: Stack<PokerCard>) : CardDeck {
         return allCards.pop()
     }
 
-    override fun shuffle(): Unit {
-        allCards.shuffled()
+    override fun shuffle(): CardDeckImpl {
+        val stack = Stack<PokerCard>()
+        allCards.shuffled().forEach{ card -> stack.push(card)}
+        return CardDeckImpl(stack)
     }
 }
 

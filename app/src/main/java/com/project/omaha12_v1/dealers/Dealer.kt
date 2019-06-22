@@ -23,7 +23,7 @@ interface Dealer {
 }
 
 class DealerImpl(
-    private val cardDeck: CardDeck,
+    private var cardDeck: CardDeck,
     private val showDownEvaluator: ShowDownEvaluator) : Dealer {
 
     override fun calcBestHand(communityCards: Array<PokerCard>, omahaHands: List<OmahaHand>): Pair<PokerHand, OmahaHand> {
@@ -53,6 +53,6 @@ class DealerImpl(
     }
 
     override fun shuffle() {
-        return cardDeck.shuffle()
+        cardDeck = cardDeck.shuffle()
     }
 }

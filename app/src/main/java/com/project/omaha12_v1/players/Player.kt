@@ -14,16 +14,21 @@ interface Player {
     fun getThirdFlopCards(): List<PokerCard>
 
     fun name(): String
+    fun cards(): List<PokerCard>
 }
 
 class PlayerImpl(val name: String,
-                 private var crads: List<PokerCard>,
+                 private var cards: List<PokerCard>,
                  private var firstFlopCards: List<PokerCard>,
                  private var secondFlopCards: List<PokerCard>,
                  private var thirdFlopCards: List<PokerCard>): Player {
 
+    override fun cards(): List<PokerCard> {
+        return cards
+    }
+
     override fun takeCards(cards: List<PokerCard>) {
-        this.crads = cards
+        this.cards = cards
     }
 
     override fun getFirstFlopCards(): List<PokerCard> {

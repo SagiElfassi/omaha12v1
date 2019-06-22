@@ -11,6 +11,7 @@ import com.project.omaha12_v1.game.Omaha12Game
 import com.project.omaha12_v1.hands.ShowDownEvaluatorImpl
 import com.project.omaha12_v1.players.PlayerImpl
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.game_screen.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -19,21 +20,9 @@ class MainActivity : AppCompatActivity() {
         requestedOrientation = (ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE)
         setContentView(R.layout.activity_main)
 
-
-        val cards = CardDeckFactory().build()
-        val players = listOf(
-            PlayerImpl("Alonm", listOf(), listOf(), listOf(), listOf()),
-            PlayerImpl("Sagia", listOf(), listOf(), listOf(), listOf())
-        )
-
         StartNewGame.setOnClickListener {
             val intent = Intent(this, GameScreen::class.java)
             startActivity(intent)
         }
-        val game = Omaha12Game(
-            DealerImpl(cards, ShowDownEvaluatorImpl()),
-            GameBoardImpl(),
-            players
-        ).startNewGame()
     }
 }
