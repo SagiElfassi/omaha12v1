@@ -69,7 +69,7 @@ class Omaha12Game(val dealer: Dealer, val gameBoard: GameBoard, val players: Lis
         return if (gameResult.playersResult.any { pr -> pr.resultsPoints == 3.0 })
             GameResult(
                 gameResult.playersResult
-                    .map { pr -> PlayerResult(pr.playerId, pr.resultsPoints * players.size) }
+                    .map { pr -> PlayerResult(pr.playerId, pr.resultsPoints * ((players.size - 1) * 2)) }
             )
         else gameResult
     }
