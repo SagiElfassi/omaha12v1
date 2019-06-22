@@ -3,7 +3,9 @@ package com.project.omaha12_v1.game
 import com.project.omaha12_v1.board.GameBoard
 import com.project.omaha12_v1.cards.PokerCard
 import com.project.omaha12_v1.dealers.Dealer
+import com.project.omaha12_v1.hands.HandRank
 import com.project.omaha12_v1.hands.OmahaHand
+import com.project.omaha12_v1.players.PlayerHand
 import com.project.omaha12_v1.players.Player
 import com.project.omaha12_v1.players.PlayerOmahaHand
 import kotlin.reflect.KFunction1
@@ -41,7 +43,8 @@ class Omaha12Game(val dealer: Dealer, val gameBoard: GameBoard, val players: Lis
                 .map {
                     PlayerResult(
                         it.key,
-                        it.value.map { entry -> entry.resultsPoints }.fold(0.0) { total, next -> total + next })
+                        it.value.map { entry -> entry.kooPoints }.fold(0.0) { total, next -> total + next },
+                        it.value.map { entry -> entry.bonus }.fold(0.0) { total, next -> total + next })
                 })
 
         return doubleUpIfOneWinsAllKoos(gameResult)
@@ -49,34 +52,36 @@ class Omaha12Game(val dealer: Dealer, val gameBoard: GameBoard, val players: Lis
 
     private fun getKooResult(
         kooBoardCards: List<PokerCard>,
-        getPlayerKooHand: KFunction1<Player, List<PokerCard>>
-    ): List<PlayerResult> {
+        getPlayerKooHand: KFunction1<Player, List<PokerCard>>): List<PlayerResult> {
 
         val kooBestHand = dealer.calcBestHand(
             kooBoardCards.toTypedArray(),
             players.map { player -> PlayerOmahaHand(player.name(), OmahaHand(getPlayerKooHand(player))) })
 
         return players.map { player ->
+            val bonus = dealer.calcBonus(kooBoardCards.toTypedArray(), OmahaHand(getPlayerKooHand(player)))
             if (kooBestHand.any { bh -> bh.playerId == player.name() })
-                PlayerResult(player.name(), 1.0 / kooBestHand.size)
-            else
-                PlayerResult(player.name(), 0.0)
+                    PlayerResult(player.name(), 1.0, bonus)
+                else
+                    PlayerResult(player.name(), 0.0, bonus)
         }
 
     }
 
     private fun doubleUpIfOneWinsAllKoos(gameResult: GameResult): GameResult {
-        return if (gameResult.playersResult.any { pr -> pr.resultsPoints == 3.0 })
+        return if (gameResult.playersResult.any { pr -> pr.kooPoints == 3.0 })
             GameResult(
-                gameResult.playersResult
-                    .map { pr -> PlayerResult(pr.playerId, pr.resultsPoints * ((players.size - 1) * 2)) }
-            )
+                gameResult.playersResult.map { pr ->
+                    PlayerResult(
+                        pr.playerId,
+                        pr.kooPoints * ((players.size - 1) * 2),
+                        pr.bonus
+                    )
+                })
         else gameResult
     }
-
-
 }
 
 data class GameResult(val playersResult: List<PlayerResult>)
 
-data class PlayerResult(val playerId: String, val resultsPoints: Double)
+data class PlayerResult(val playerId: String, val kooPoints: Double, val bonus: Double = 0.0)
