@@ -31,11 +31,11 @@ class PlayerImpl(val name: String,
     }
 
     override fun getSecondFlopCards(): List<PokerCard> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        return secondFlopCards
     }
 
     override fun getThirdFlopCards(): List<PokerCard> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        return thirdFlopCards
     }
 
     override fun setCardToFirstFlop(cardIndex: Int) {
