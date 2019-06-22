@@ -2,11 +2,10 @@ package com.project.omaha12_v1.dealers
 
 import com.project.omaha12_v1.cards.CardDeck
 import com.project.omaha12_v1.cards.PokerCard
-import com.project.omaha12_v1.hands.CompareHands
-import com.project.omaha12_v1.hands.OmahaHand
-import com.project.omaha12_v1.hands.PokerHand
 import com.project.omaha12_v1.hands.ShowDownEvaluator
 import com.project.omaha12_v1.players.Player
+import com.project.omaha12_v1.players.PlayerOmahaHand
+import com.project.omaha12_v1.players.BestHand
 
 interface Dealer {
     fun deal(players: List<Player>)
@@ -19,18 +18,23 @@ interface Dealer {
 
     fun getDeck(): CardDeck
 
-    fun calcBestHand(communityCards: Array<PokerCard>, omahaHands: List<OmahaHand>): Pair<PokerHand, OmahaHand>
+    fun calcBestHand(communityCards: Array<PokerCard>, playerOmahaHands: List<PlayerOmahaHand>): List<BestHand>
 }
 
 class DealerImpl(
     private var cardDeck: CardDeck,
-    private val showDownEvaluator: ShowDownEvaluator) : Dealer {
+    private val showDownEvaluator: ShowDownEvaluator
+) : Dealer {
 
-    override fun calcBestHand(communityCards: Array<PokerCard>, omahaHands: List<OmahaHand>): Pair<PokerHand, OmahaHand> {
-        val resultMap = omahaHands.map { omahaHand -> Pair(showDownEvaluator.evaluate(communityCards, omahaHand), omahaHand) }
-            .toMap().toSortedMap(CompareHands)
+    override fun calcBestHand(communityCards: Array<PokerCard>, playerOmahaHands: List<PlayerOmahaHand>): List<BestHand>{
 
-        return Pair(resultMap.firstKey(), resultMap[resultMap.firstKey()]!!)
+        val winners = playerOmahaHands.map { playerOmahaHand ->
+            BestHand(
+                playerOmahaHand.playerId,
+                showDownEvaluator.evaluate(communityCards, playerOmahaHand.omahaHand)
+            ) }.sortedWith(ComparePlayerHand)
+
+        return winners.filter { player -> ComparePlayerHand.compare(player, winners.first()) == 0 }
     }
 
     override fun getDeck(): CardDeck {
@@ -54,5 +58,11 @@ class DealerImpl(
 
     override fun shuffle() {
         cardDeck = cardDeck.shuffle()
+    }
+}
+
+class ComparePlayerHand {
+    companion object : Comparator<BestHand> {
+        override fun compare(a: BestHand, b: BestHand): Int = b.pokerHand.compare(a.pokerHand)
     }
 }

@@ -1,6 +1,7 @@
 package com.project.omaha12_v1.board
 
 import com.project.omaha12_v1.cards.PokerCard
+import com.project.omaha12_v1.hands.HandConverter
 
 interface GameBoard {
     fun putThreeFlops(
@@ -56,5 +57,13 @@ class GameBoardImpl(
         return thirdKoo
     }
 
+    companion object {
+        fun fromString(firstKoo: String, secondKoo: String, thirdKoo: String): List<List<PokerCard>> {
+            return listOf(HandConverter.fromString(firstKoo),
+                HandConverter.fromString(secondKoo),
+                HandConverter.fromString(thirdKoo)
+            )
+        }
+    }
 
 }
