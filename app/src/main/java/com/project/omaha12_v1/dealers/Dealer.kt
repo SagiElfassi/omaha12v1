@@ -51,7 +51,7 @@ class DealerImpl(
 
     override fun deal(players: List<Player>) {
         players.forEach { player ->
-            player.takeCards((1 until 12)
+            player.takeCards((1 until 13)
                 .map { cardDeck.takeCard() })
         }
     }
