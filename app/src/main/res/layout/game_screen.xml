@@ -9,257 +9,248 @@
         android:background="@drawable/poker_table"
 >
 
-    <TextView
+    <ImageView
             android:layout_width="55dp"
             android:layout_height="70dp"
             android:id="@+id/river1" app:layout_constraintStart_toEndOf="@+id/turn1" android:layout_marginLeft="22dp"
             android:layout_marginStart="22dp" app:layout_constraintTop_toTopOf="@+id/turn1"/>
-    <TextView
+    <ImageView
             android:layout_width="55dp"
             android:layout_height="70dp"
             android:id="@+id/river2" app:layout_constraintStart_toEndOf="@+id/turn2" android:layout_marginLeft="22dp"
             android:layout_marginStart="22dp" app:layout_constraintTop_toTopOf="@+id/turn2"/>
-    <TextView
+    <ImageView
             android:layout_width="55dp"
             android:layout_height="70dp"
             android:id="@+id/river3" app:layout_constraintStart_toEndOf="@+id/turn3" android:layout_marginLeft="22dp"
             android:layout_marginStart="22dp" app:layout_constraintTop_toTopOf="@+id/turn3"/>
-    <TextView
+    <ImageView
             android:layout_width="55dp"
             android:layout_height="70dp"
             android:id="@+id/turn1" app:layout_constraintStart_toEndOf="@+id/flop1card2"
             android:layout_marginLeft="22dp" android:layout_marginStart="22dp"
             app:layout_constraintTop_toTopOf="@+id/flop1card2"/>
-    <TextView
+    <ImageView
             android:layout_width="55dp"
             android:layout_height="70dp"
             android:id="@+id/turn2" app:layout_constraintStart_toEndOf="@+id/flop2card3"
             android:layout_marginLeft="22dp" android:layout_marginStart="22dp"
             app:layout_constraintTop_toTopOf="@+id/flop2card3"/>
-    <TextView
+    <ImageView
             android:layout_width="55dp"
             android:layout_height="70dp"
             android:id="@+id/turn3" app:layout_constraintStart_toEndOf="@+id/flop3card3"
             android:layout_marginLeft="22dp" android:layout_marginStart="22dp"
             app:layout_constraintTop_toTopOf="@+id/flop3card3"/>
-    <TextView
+    <ImageView
             android:layout_width="55dp"
             android:layout_height="70dp"
             android:id="@+id/flop3card1" android:layout_marginTop="10dp"
             app:layout_constraintTop_toBottomOf="@+id/flop2card1" app:layout_constraintStart_toStartOf="parent"
             android:layout_marginLeft="100dp" android:layout_marginStart="100dp"/>
-    <TextView
+    <ImageView
             android:layout_width="55dp"
             android:layout_height="70dp"
             android:id="@+id/flop3card2" app:layout_constraintStart_toEndOf="@+id/flop3card1"
             android:layout_marginLeft="8dp" android:layout_marginStart="8dp"
             app:layout_constraintTop_toTopOf="@+id/flop3card1"/>
-    <TextView
+    <ImageView
             android:layout_width="55dp"
             android:layout_height="70dp"
             android:id="@+id/flop3card3" app:layout_constraintStart_toEndOf="@+id/flop3card2"
             android:layout_marginLeft="8dp" android:layout_marginStart="8dp"
             app:layout_constraintTop_toTopOf="@+id/flop3card2"/>
-    <TextView
+    <ImageView
             android:layout_width="55dp"
             android:layout_height="70dp"
             android:id="@+id/flop2card1" android:layout_marginTop="10dp"
             app:layout_constraintTop_toBottomOf="@+id/flop1card1" app:layout_constraintStart_toStartOf="parent"
             android:layout_marginLeft="100dp" android:layout_marginStart="100dp"/>
-    <TextView
+    <ImageView
             android:layout_width="55dp"
             android:layout_height="70dp"
             android:id="@+id/flop2card2" app:layout_constraintStart_toEndOf="@+id/flop2card1"
             android:layout_marginLeft="8dp" android:layout_marginStart="8dp"
             app:layout_constraintTop_toTopOf="@+id/flop2card1"/>
-    <TextView
+    <ImageView
             android:layout_width="55dp"
             android:layout_height="70dp"
             android:id="@+id/flop2card3" app:layout_constraintStart_toEndOf="@+id/flop2card2"
             android:layout_marginLeft="8dp" android:layout_marginStart="8dp"
             app:layout_constraintTop_toTopOf="@+id/flop2card2"/>
-    <TextView
-            android:layout_width="25dp"
-            android:layout_height="30dp"
+    <ImageView
+            android:layout_width="40dp"
+            android:layout_height="50dp"
             android:id="@+id/player2card11"
             app:layout_constraintStart_toEndOf="@+id/player2card10"
-            android:layout_marginLeft="8dp" android:layout_marginStart="8dp"
-            app:layout_constraintTop_toTopOf="@+id/player2card10"/>
-    <TextView
-            android:layout_width="25dp"
-            android:layout_height="30dp"
+            app:layout_constraintTop_toTopOf="@+id/player2card10" android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"/>
+    <ImageView
+            android:layout_width="40dp"
+            android:layout_height="50dp"
             android:id="@+id/player2card3"
             app:layout_constraintStart_toEndOf="@+id/player2card2"
             android:layout_marginLeft="8dp" android:layout_marginStart="8dp"
             app:layout_constraintTop_toTopOf="@+id/player2card2"/>
-    <TextView
-            android:layout_width="25dp"
-            android:layout_height="30dp"
+    <ImageView
+            android:layout_width="40dp"
+            android:layout_height="50dp"
             android:id="@+id/player2card1"
             app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginLeft="175dp" android:layout_marginStart="175dp"
-            app:layout_constraintTop_toTopOf="parent" android:layout_marginTop="16dp"/>
-    <TextView
-            android:layout_width="25dp"
-            android:layout_height="30dp"
+            android:layout_marginLeft="80dp" android:layout_marginStart="80dp"
+            app:layout_constraintTop_toTopOf="parent" android:layout_marginTop="12dp"/>
+    <ImageView
+            android:layout_width="40dp"
+            android:layout_height="50dp"
             android:id="@+id/player2card2"
             app:layout_constraintStart_toEndOf="@+id/player2card1"
             android:layout_marginLeft="8dp" android:layout_marginStart="8dp"
             app:layout_constraintTop_toTopOf="@+id/player2card1"/>
-    <TextView
-            android:layout_width="25dp"
-            android:layout_height="30dp"
+    <ImageView
+            android:layout_width="40dp"
+            android:layout_height="50dp"
             android:id="@+id/player2card12"
             app:layout_constraintStart_toEndOf="@+id/player2card11"
-            android:layout_marginLeft="8dp" android:layout_marginStart="8dp"
             app:layout_constraintTop_toTopOf="@+id/player2card11"
-    />
-    <TextView
-            android:layout_width="25dp"
-            android:layout_height="30dp"
+            android:layout_marginLeft="8dp" android:layout_marginStart="8dp"/>
+    <ImageView
+            android:layout_width="40dp"
+            android:layout_height="50dp"
             android:id="@+id/player2card8"
             app:layout_constraintStart_toEndOf="@+id/player2card7"
-            android:layout_marginLeft="8dp" android:layout_marginStart="8dp"
-            app:layout_constraintTop_toTopOf="@+id/player2card7"/>
-    <TextView
-            android:layout_width="25dp"
-            android:layout_height="30dp"
+            app:layout_constraintTop_toTopOf="@+id/player2card7" android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"/>
+    <ImageView
+            android:layout_width="40dp"
+            android:layout_height="50dp"
             android:id="@+id/player2card10"
             app:layout_constraintStart_toEndOf="@+id/player2card9"
-            android:layout_marginLeft="8dp" android:layout_marginStart="8dp"
-            app:layout_constraintTop_toTopOf="@+id/player2card9"/>
-    <TextView
-            android:layout_width="25dp"
-            android:layout_height="30dp"
+            app:layout_constraintTop_toTopOf="@+id/player2card9" android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"/>
+    <ImageView
+            android:layout_width="40dp"
+            android:layout_height="50dp"
             android:id="@+id/player2card9"
             app:layout_constraintStart_toEndOf="@+id/player2card8"
-            android:layout_marginLeft="8dp" android:layout_marginStart="8dp"
-            app:layout_constraintTop_toTopOf="@+id/player2card8"/>
-    <TextView
-            android:layout_width="25dp"
-            android:layout_height="30dp"
+            app:layout_constraintTop_toTopOf="@+id/player2card8" android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"/>
+    <ImageView
+            android:layout_width="40dp"
+            android:layout_height="50dp"
             android:id="@+id/player2card6"
             app:layout_constraintTop_toTopOf="@+id/player2card5" app:layout_constraintStart_toEndOf="@+id/player2card5"
             android:layout_marginLeft="8dp" android:layout_marginStart="8dp"/>
-    <TextView
-            android:layout_width="25dp"
-            android:layout_height="30dp"
+    <ImageView
+            android:layout_width="40dp"
+            android:layout_height="50dp"
             android:id="@+id/player2card4"
             app:layout_constraintStart_toEndOf="@+id/player2card3"
-            android:layout_marginLeft="8dp" android:layout_marginStart="8dp"
-            app:layout_constraintTop_toTopOf="@+id/player2card3"/>
-    <TextView
-            android:layout_width="25dp"
-            android:layout_height="30dp"
+            app:layout_constraintTop_toTopOf="@+id/player2card3" android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"/>
+    <ImageView
+            android:layout_width="40dp"
+            android:layout_height="50dp"
             android:id="@+id/player2card7"
             app:layout_constraintTop_toTopOf="@+id/player2card6" app:layout_constraintStart_toEndOf="@+id/player2card6"
             android:layout_marginLeft="8dp" android:layout_marginStart="8dp"/>
-    <TextView
-            android:layout_width="25dp"
-            android:layout_height="30dp"
+    <ImageView
+            android:layout_width="40dp"
+            android:layout_height="50dp"
             android:id="@+id/player2card5"
             app:layout_constraintStart_toEndOf="@+id/player2card4"
-            android:layout_marginLeft="8dp" android:layout_marginStart="8dp"
-            app:layout_constraintTop_toTopOf="@+id/player2card4"/>
-    <TextView
-            android:layout_width="25dp"
-            android:layout_height="30dp"
+            app:layout_constraintTop_toTopOf="@+id/player2card4" android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"/>
+    <ImageView
+            android:layout_width="40dp"
+            android:layout_height="50dp"
             android:id="@+id/player1card7"
             app:layout_constraintTop_toTopOf="@+id/player1card6" app:layout_constraintStart_toEndOf="@+id/player1card6"
             android:layout_marginLeft="8dp" android:layout_marginStart="8dp"/>
-    <TextView
-            android:layout_width="25dp"
-            android:layout_height="30dp"
+    <ImageView
+            android:layout_width="40dp"
+            android:layout_height="50dp"
             android:id="@+id/player1card8"
             app:layout_constraintTop_toTopOf="@+id/player1card7" app:layout_constraintStart_toEndOf="@+id/player1card7"
             android:layout_marginLeft="8dp" android:layout_marginStart="8dp"/>
-    <TextView
-            android:layout_width="25dp"
-            android:layout_height="30dp"
+    <ImageView
+            android:layout_width="40dp"
+            android:layout_height="50dp"
             android:id="@+id/player1card9"
             app:layout_constraintTop_toTopOf="@+id/player1card8" app:layout_constraintStart_toEndOf="@+id/player1card8"
             android:layout_marginLeft="8dp" android:layout_marginStart="8dp"/>
-    <TextView
-            android:layout_width="25dp"
-            android:layout_height="30dp"
+    <ImageView
+            android:layout_width="40dp"
+            android:layout_height="50dp"
             android:id="@+id/player1card12"
             app:layout_constraintTop_toTopOf="@+id/player1card11"
             app:layout_constraintStart_toEndOf="@+id/player1card11" android:layout_marginLeft="8dp"
             android:layout_marginStart="8dp"/>
-    <TextView
-            android:layout_width="25dp"
-            android:layout_height="30dp"
+    <ImageView
+            android:layout_width="40dp"
+            android:layout_height="50dp"
             android:id="@+id/player1card11"
             app:layout_constraintTop_toTopOf="@+id/player1card10"
             app:layout_constraintStart_toEndOf="@+id/player1card10" android:layout_marginLeft="8dp"
             android:layout_marginStart="8dp"/>
-    <TextView
-            android:layout_width="25dp"
-            android:layout_height="30dp"
+    <ImageView
+            android:layout_width="40dp"
+            android:layout_height="50dp"
             android:id="@+id/player1card10"
             app:layout_constraintTop_toTopOf="@+id/player1card9" app:layout_constraintStart_toEndOf="@+id/player1card9"
             android:layout_marginLeft="8dp" android:layout_marginStart="8dp"/>
-    <TextView
-            android:layout_width="25dp"
-            android:layout_height="30dp"
+    <ImageView
+            android:layout_width="40dp"
+            android:layout_height="50dp"
             android:id="@+id/player1card1"
             app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginLeft="175dp" android:layout_marginStart="175dp"
-            app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="16dp"/>
-    <TextView
-            android:layout_width="25dp"
-            android:layout_height="30dp"
+            android:layout_marginLeft="80dp" android:layout_marginStart="80dp"
+            app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="12dp"/>
+    <ImageView
+            android:layout_width="40dp"
+            android:layout_height="50dp"
             android:id="@+id/player1card2"
             app:layout_constraintTop_toTopOf="@+id/player1card1" app:layout_constraintStart_toEndOf="@+id/player1card1"
             android:layout_marginLeft="8dp" android:layout_marginStart="8dp"/>
-    <TextView
-            android:layout_width="25dp"
-            android:layout_height="30dp"
+    <ImageView
+            android:layout_width="40dp"
+            android:layout_height="50dp"
             android:id="@+id/player1card3"
             app:layout_constraintTop_toTopOf="@+id/player1card2" app:layout_constraintStart_toEndOf="@+id/player1card2"
             android:layout_marginLeft="8dp" android:layout_marginStart="8dp"/>
-    <TextView
-            android:layout_width="25dp"
-            android:layout_height="30dp"
+    <ImageView
+            android:layout_width="40dp"
+            android:layout_height="50dp"
             android:id="@+id/player1card4"
             app:layout_constraintTop_toTopOf="@+id/player1card3" app:layout_constraintStart_toEndOf="@+id/player1card3"
             android:layout_marginLeft="8dp" android:layout_marginStart="8dp"/>
-    <TextView
-            android:layout_width="25dp"
-            android:layout_height="30dp"
+    <ImageView
+            android:layout_width="40dp"
+            android:layout_height="50dp"
             android:id="@+id/player1card5"
             app:layout_constraintTop_toTopOf="@+id/player1card4" app:layout_constraintStart_toEndOf="@+id/player1card4"
             android:layout_marginLeft="8dp" android:layout_marginStart="8dp"/>
-    <TextView
-            android:layout_width="25dp"
-            android:layout_height="30dp"
+    <ImageView
+            android:layout_width="40dp"
+            android:layout_height="50dp"
             android:id="@+id/player1card6"
             app:layout_constraintTop_toTopOf="@+id/player1card5" app:layout_constraintStart_toEndOf="@+id/player1card5"
             android:layout_marginLeft="8dp" android:layout_marginStart="8dp"/>
-    <TextView
+    <ImageView
             android:layout_width="55dp"
             android:layout_height="70dp"
             android:id="@+id/flop1card1" app:layout_constraintStart_toStartOf="parent" android:layout_marginLeft="100dp"
             android:layout_marginStart="100dp" app:layout_constraintTop_toTopOf="parent"
             android:layout_marginTop="90dp"/>
-    <TextView
+    <ImageView
             android:layout_width="55dp"
             android:layout_height="70dp"
             android:id="@+id/flop1card2" app:layout_constraintStart_toEndOf="@+id/flop1card3"
             android:layout_marginLeft="8dp" android:layout_marginStart="8dp"
             app:layout_constraintTop_toTopOf="@+id/flop1card3"/>
-    <TextView
+    <ImageView
             android:layout_width="55dp"
             android:layout_height="70dp"
             android:id="@+id/flop1card3" app:layout_constraintStart_toEndOf="@+id/flop1card1"
             android:layout_marginLeft="8dp" android:layout_marginStart="8dp"
             app:layout_constraintTop_toTopOf="@+id/flop1card1"/>
-    <ImageView
-            android:layout_width="120dp"
-            android:layout_height="122dp" app:srcCompat="@color/colorAccent"
-            android:id="@+id/tempCard"
-            app:layout_constraintStart_toEndOf="@+id/river2" android:layout_marginLeft="50dp"
-            android:layout_marginStart="50dp" android:layout_marginTop="95dp"
-            app:layout_constraintTop_toBottomOf="@+id/player2card11"
-            android:contentDescription="@string/app_name"/>
 </android.support.constraint.ConstraintLayout>
