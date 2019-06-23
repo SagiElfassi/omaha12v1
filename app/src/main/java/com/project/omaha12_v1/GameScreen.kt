@@ -5,7 +5,6 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.ImageView
 import com.project.omaha12_v1.board.GameBoardImpl
 import com.project.omaha12_v1.cards.CardDeckFactory
 import com.project.omaha12_v1.dealers.DealerImpl
@@ -81,8 +80,7 @@ class GameScreen : AppCompatActivity() {
         flop3card3.setImageBitmap(getBitmapPath(thirdFlop[2].toString()))
 
     }
-    fun getBitmapPath(bit: String ): Bitmap?{
-        val assetsBitmap: Bitmap? = BitmapFactory.decodeStream(assets.open(bit.toLowerCase()+".png"))
-        return assetsBitmap
+    private fun getBitmapPath(bit: String ): Bitmap?{
+        return BitmapFactory.decodeStream(assets.open(bit.toLowerCase()+".png"))
     }
 }
