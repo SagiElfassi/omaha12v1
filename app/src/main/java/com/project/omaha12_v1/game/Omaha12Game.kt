@@ -10,16 +10,16 @@ import com.project.omaha12_v1.players.Player
 import com.project.omaha12_v1.players.PlayerOmahaHand
 import kotlin.reflect.KFunction1
 
-class Omaha12Game(val dealer: Dealer, val gameBoard: GameBoard, val players: List<Player>) {
+class Omaha12Game(val dealer: Dealer, var gameBoard: GameBoard, val players: List<Player>) {
 
     fun startNewGame() {
         dealer.shuffle()
         dealer.deal(players)
     }
 
-    fun open3Flops(): GameBoard {
+    fun open3Flops() {
         val allFlops = dealer.open3Flops()
-        return gameBoard.putThreeFlops(allFlops[0], allFlops[1], allFlops[2])
+        gameBoard = gameBoard.putThreeFlops(allFlops[0], allFlops[1], allFlops[2])
     }
 
     fun openTurnAndRivers(): GameBoard {

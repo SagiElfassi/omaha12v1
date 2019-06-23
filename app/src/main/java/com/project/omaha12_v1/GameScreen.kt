@@ -27,8 +27,9 @@ class GameScreen : AppCompatActivity() {
         val game = Omaha12Game(
             DealerImpl(cards, ShowDownEvaluatorImpl()),
             GameBoardImpl(),
-            players
-        ).startNewGame()
+            players)
+
+        game.startNewGame()
 
         player1card1.text = players[0].cards()[0].toString()
         player1card2.text = players[0].cards()[1].toString()
@@ -55,5 +56,30 @@ class GameScreen : AppCompatActivity() {
         player2card10.text = players[1].cards()[9].toString()
         player2card11.text = players[1].cards()[10].toString()
         player2card12.text = players[1].cards()[11].toString()
+
+        game.open3Flops()
+
+        val firstFlop = game.gameBoard.firstKoo()
+        val secondFlop = game.gameBoard.secondKoo()
+        val thirdFlop = game.gameBoard.thirdKoo()
+
+        flop1card1.text = firstFlop[0].toString()
+        flop1card2.text = firstFlop[1].toString()
+        flop1card3.text = firstFlop[2].toString()
+
+        flop2card1.text = secondFlop[0].toString()
+        flop2card2.text = secondFlop[1].toString()
+        flop2card3.text = secondFlop[2].toString()
+
+        flop3card1.text = thirdFlop[0].toString()
+        flop3card2.text = thirdFlop[1].toString()
+        flop3card3.text = thirdFlop[2].toString()
+
+    }
+
+    override fun onStart() {
+        super.onStart()
+
+
     }
 }

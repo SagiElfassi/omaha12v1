@@ -56,7 +56,11 @@ class DealerImpl(
     }
 
     override fun open3Flops(): List<List<PokerCard>> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        return listOf(
+            listOf(cardDeck.takeCard(), cardDeck.takeCard(), cardDeck.takeCard()),
+            listOf(cardDeck.takeCard(), cardDeck.takeCard(), cardDeck.takeCard()),
+            listOf(cardDeck.takeCard(), cardDeck.takeCard(), cardDeck.takeCard())
+        )
     }
 
     override fun openTurnAndRiver(): List<List<PokerCard>> {
