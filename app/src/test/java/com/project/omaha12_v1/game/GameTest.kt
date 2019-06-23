@@ -39,11 +39,10 @@ class GameTest {
 
         assertThat(gameResult.playersResult.contains(PlayerResult("alonmo", 6.0)), equalTo(true))
         assertThat(gameResult.playersResult.contains(PlayerResult("sagiel", 0.0)), equalTo(true))
-
     }
 
     @Test
-    fun `calculate result for two players, two wins for first player and one win for seond`() {
+    fun `calculate result for two players, two wins for first player and one win for second`() {
         val alonPlayer = PlayerImpl(
             "alonmo", listOf(),
             OmahaHand.fromString("KcKdAcAd")!!.cards,
@@ -97,7 +96,6 @@ class GameTest {
 
         assertThat(gameResult.playersResult.contains(PlayerResult("alonmo", 1.5)), equalTo(true))
         assertThat(gameResult.playersResult.contains(PlayerResult("sagiel", 1.5)), equalTo(true))
-
     }
 
     @Test
@@ -206,5 +204,33 @@ class GameTest {
         assertThat(gameResult.playersResult.contains(PlayerResult("alonmo", 2.0)), equalTo(true))
         assertThat(gameResult.playersResult.contains(PlayerResult("sagiel", 1.0)), equalTo(true))
         assertThat(gameResult.playersResult.contains(PlayerResult("grojan", 0.0)), equalTo(true))
+    }
+
+    @Test
+    fun `calculate result for two players when first player get bonus on royal flush and second player on four of a kind`() {
+        val alonPlayer = PlayerImpl(
+            "alonmo", listOf(),
+            OmahaHand.fromString("KcKdAcAd")!!.cards,
+            OmahaHand.fromString("KhKsAhAs")!!.cards,
+            OmahaHand.fromString("QcQdTcTd")!!.cards
+        )
+
+        val sagiPlayer = PlayerImpl(
+            "sagiel", listOf(),
+            OmahaHand.fromString("3c4c5c6c")!!.cards,
+            OmahaHand.fromString("3h4h5h6h")!!.cards,
+            OmahaHand.fromString("7d7h5d6d")!!.cards
+        )
+
+        val boards = GameBoardImpl.fromString("TsJdQh2h3s", "TsJsQh2s3s", "Jc9c8c7c7h")
+        val gameBoard = GameBoardImpl(boards[0], boards[1], boards[2])
+
+        val dealer = DealerImpl(CardDeckFactory().build(), ShowDownEvaluatorImpl())
+        val game = Omaha12Game(dealer, gameBoard, listOf(alonPlayer, sagiPlayer))
+
+        val gameResult = game.calculateResult()
+
+        assertThat(gameResult.playersResult.contains(PlayerResult("alonmo", 6.0, 5.0)), equalTo(true))
+        assertThat(gameResult.playersResult.contains(PlayerResult("sagiel", 0.0, 2.0)), equalTo(true))
     }
 }
