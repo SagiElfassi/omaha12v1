@@ -15,7 +15,7 @@ class GameScreen : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        requestedOrientation =  (ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE)
+        requestedOrientation = (ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE)
         setContentView(R.layout.game_screen)
 
         val cards = CardDeckFactory().build()
@@ -27,7 +27,8 @@ class GameScreen : AppCompatActivity() {
         val game = Omaha12Game(
             DealerImpl(cards, ShowDownEvaluatorImpl()),
             GameBoardImpl(),
-            players)
+            players
+        )
 
         game.startNewGame()
 
@@ -57,6 +58,8 @@ class GameScreen : AppCompatActivity() {
         player2card11.text = players[1].cards()[10].toString()
         player2card12.text = players[1].cards()[11].toString()
 
+        tempCard.setImageResource(R.drawable.ace_spade)
+
         game.open3Flops()
 
         val firstFlop = game.gameBoard.firstKoo()
@@ -74,12 +77,6 @@ class GameScreen : AppCompatActivity() {
         flop3card1.text = thirdFlop[0].toString()
         flop3card2.text = thirdFlop[1].toString()
         flop3card3.text = thirdFlop[2].toString()
-
-    }
-
-    override fun onStart() {
-        super.onStart()
-
 
     }
 }

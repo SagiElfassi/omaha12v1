@@ -254,4 +254,12 @@
             android:id="@+id/flop1card3" app:layout_constraintStart_toEndOf="@+id/flop1card1"
             android:layout_marginLeft="8dp" android:layout_marginStart="8dp"
             app:layout_constraintTop_toTopOf="@+id/flop1card1"/>
+    <ImageView
+            android:layout_width="120dp"
+            android:layout_height="122dp" app:srcCompat="@color/colorAccent"
+            android:id="@+id/tempCard"
+            app:layout_constraintStart_toEndOf="@+id/river2" android:layout_marginLeft="50dp"
+            android:layout_marginStart="50dp" android:layout_marginTop="95dp"
+            app:layout_constraintTop_toBottomOf="@+id/player2card11"
+            android:contentDescription="@string/app_name"/>
 </android.support.constraint.ConstraintLayout>
