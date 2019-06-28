@@ -83,4 +83,5 @@ class GameScreen : AppCompatActivity() {
     private fun getBitmapPath(bit: String ): Bitmap?{
         return BitmapFactory.decodeStream(assets.open(bit.toLowerCase()+".png"))
     }
+
 }
