@@ -22,9 +22,9 @@ class Omaha12Game(val dealer: Dealer, var gameBoard: GameBoard, val players: Lis
         gameBoard = gameBoard.putThreeFlops(allFlops[0], allFlops[1], allFlops[2])
     }
 
-    fun openTurnAndRivers(): GameBoard {
+    fun openTurnAndRivers() {
         val allTurnAndRivers = dealer.openTurnAndRiver()
-        return gameBoard
+        gameBoard = gameBoard
             .putTurnAndRiverForFirstKoo(allTurnAndRivers[0][0], allTurnAndRivers[0][1])
             .putTurnAndRiverForSecondKoo(allTurnAndRivers[1][0], allTurnAndRivers[1][1])
             .putTurnAndRiverForThirdKoo(allTurnAndRivers[2][0], allTurnAndRivers[2][1])

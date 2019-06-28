@@ -64,7 +64,11 @@ class DealerImpl(
     }
 
     override fun openTurnAndRiver(): List<List<PokerCard>> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        return listOf(
+            listOf(cardDeck.takeCard(), cardDeck.takeCard()),
+            listOf(cardDeck.takeCard(), cardDeck.takeCard()),
+            listOf(cardDeck.takeCard(), cardDeck.takeCard())
+        )
     }
 
     override fun deal(players: List<Player>) {
