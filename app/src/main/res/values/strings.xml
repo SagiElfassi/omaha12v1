@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">omaha12-v1</string>
+    <string name="firstKoo">First Koo</string>
+    <string name="i_m_ready">I\'m ready!</string>
 </resources>
