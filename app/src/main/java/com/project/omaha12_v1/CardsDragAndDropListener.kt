@@ -43,6 +43,7 @@ class CardsDragAndDropListener(
             }
 
             DragEvent.ACTION_DROP -> {
+                v!!.background = slotNormal
                 val view = event.localState as ImageView
                 val owner = view.parent as ViewGroup
                 owner.removeView(view)

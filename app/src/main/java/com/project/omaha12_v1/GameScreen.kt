@@ -171,13 +171,13 @@ class GameScreen : AppCompatActivity() {
         slots.forEach { it.setOnDragListener(CardsDragAndDropListener(slotNormal, slotEntered)) }
     }
 
-    @SuppressLint("ClickableViewAccessibility")
+    @SuppressLint( "NewApi", "ClickableViewAccessibility")
     private fun setOnTouchListenerFor(cardImageView: ImageView?) {
         cardImageView!!.setOnTouchListener { v, event ->
             if (event.action == MotionEvent.ACTION_DOWN) {
                 val data = ClipData.newPlainText("", "")
                 val shadowBuilder = View.DragShadowBuilder(v)
-                v.startDrag(data, shadowBuilder, v, 0)
+                    v.startDragAndDrop(data, shadowBuilder, v, 0)
                 true
             } else {
                 false
