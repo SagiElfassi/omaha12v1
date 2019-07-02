@@ -21,8 +21,6 @@ class CardsDragAndDropListener(
 
     @RequiresApi(Build.VERSION_CODES.JELLY_BEAN)
     override fun onDrag(v: View?, event: DragEvent?): Boolean {
-        v!!.background = slotNormal
-
         when (event!!.action) {
 
             DragEvent.ACTION_DRAG_STARTED -> {
@@ -31,7 +29,7 @@ class CardsDragAndDropListener(
             }
 
             DragEvent.ACTION_DRAG_ENTERED -> {
-                v.background = slotEntered
+                v!!.background = slotEntered
                 return true
             }
 
@@ -40,14 +38,15 @@ class CardsDragAndDropListener(
             }
 
             DragEvent.ACTION_DRAG_EXITED -> {
+                v!!.background = slotNormal
                 return true
             }
 
             DragEvent.ACTION_DROP -> {
-                var view = event.localState as ImageView
-                var owner = view.parent as ViewGroup
+                val view = event.localState as ImageView
+                val owner = view.parent as ViewGroup
                 owner.removeView(view)
-                var container = v as LinearLayout
+                val container = v as LinearLayout
                 container.addView(view)
                 return true
             }

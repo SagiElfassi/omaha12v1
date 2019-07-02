@@ -146,6 +146,7 @@ class GameScreen : AppCompatActivity() {
 
     }
 
+    @RequiresApi(Build.VERSION_CODES.JELLY_BEAN)
     private fun initSlots() {
         val slotNormal = resources.getDrawable(R.drawable.shape)
         val slotEntered = resources.getDrawable(R.drawable.enter_shape)
@@ -164,6 +165,8 @@ class GameScreen : AppCompatActivity() {
             flop3slot3,
             flop3slot4
         )
+
+        slots.forEach { it.background = slotNormal }
 
         slots.forEach { it.setOnDragListener(CardsDragAndDropListener(slotNormal, slotEntered)) }
     }
