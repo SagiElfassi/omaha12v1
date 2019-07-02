@@ -154,12 +154,15 @@ class GameScreen : AppCompatActivity() {
             flop1slot1,
             flop1slot2,
             flop1slot3,
+            flop1slot4,
             flop2slot1,
             flop2slot2,
             flop2slot3,
+            flop2slot4,
             flop3slot1,
             flop3slot2,
-            flop3slot3
+            flop3slot3,
+            flop3slot4
         )
 
         slots.forEach { it.setOnDragListener(CardsDragAndDropListener(slotNormal, slotEntered)) }

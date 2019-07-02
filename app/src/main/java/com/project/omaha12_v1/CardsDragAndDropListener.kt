@@ -21,8 +21,7 @@ class CardsDragAndDropListener(
 
     @RequiresApi(Build.VERSION_CODES.JELLY_BEAN)
     override fun onDrag(v: View?, event: DragEvent?): Boolean {
-        v!!.visibility = View.INVISIBLE
-        v.background = slotEntered
+        v!!.background = slotNormal
 
         when (event!!.action) {
 
@@ -32,7 +31,7 @@ class CardsDragAndDropListener(
             }
 
             DragEvent.ACTION_DRAG_ENTERED -> {
-                v.visibility = View.VISIBLE
+                v.background = slotEntered
                 return true
             }
 
@@ -41,7 +40,6 @@ class CardsDragAndDropListener(
             }
 
             DragEvent.ACTION_DRAG_EXITED -> {
-                //v.visibility = View.INVISIBLE
                 return true
             }
 
