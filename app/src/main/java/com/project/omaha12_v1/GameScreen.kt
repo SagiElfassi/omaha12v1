@@ -13,6 +13,8 @@ import android.support.v7.app.AppCompatActivity
 import android.view.MotionEvent
 import android.view.View
 import android.widget.ImageView
+import android.widget.LinearLayout
+import android.widget.ListView
 import com.project.omaha12_v1.board.GameBoardImpl
 import com.project.omaha12_v1.cards.CardDeckFactory
 import com.project.omaha12_v1.cards.PokerCard
@@ -65,18 +67,30 @@ class GameScreen : AppCompatActivity() {
 
 
             Handler().postDelayed({
-                turn1.setImageBitmap(getBitmapPath(firstFlop[3].toString()))
-                river1.setImageBitmap(getBitmapPath(firstFlop[4].toString()))
+                val imageView1 = ImageView(this)
+                val imageView2 = ImageView(this)
+                imageView1.setImageBitmap(getBitmapPath(firstFlop[3].toString()))
+                turn1.addView(imageView1)
+                imageView2.setImageBitmap(getBitmapPath(firstFlop[4].toString()))
+                river1.addView(imageView2)
             }, 2000)
 
             Handler().postDelayed({
-                turn2.setImageBitmap(getBitmapPath(secondFlop[3].toString()))
-                river2.setImageBitmap(getBitmapPath(secondFlop[4].toString()))
+                val imageView1 = ImageView(this)
+                val imageView2 = ImageView(this)
+                imageView1.setImageBitmap(getBitmapPath(secondFlop[3].toString()))
+                turn2.addView(imageView1)
+                imageView2.setImageBitmap(getBitmapPath(secondFlop[4].toString()))
+                river2.addView(imageView2)
             }, 4000)
 
             Handler().postDelayed({
-                turn3.setImageBitmap(getBitmapPath(thirdFlop[3].toString()))
-                river3.setImageBitmap(getBitmapPath(thirdFlop[4].toString()))
+                val imageView1 = ImageView(this)
+                val imageView2 = ImageView(this)
+                imageView1.setImageBitmap(getBitmapPath(thirdFlop[3].toString()))
+                turn3.addView(imageView1)
+                imageView2.setImageBitmap(getBitmapPath(thirdFlop[4].toString()))
+                river3.addView(imageView2)
             }, 6000)
 
         }
@@ -93,14 +107,14 @@ class GameScreen : AppCompatActivity() {
         val secondFlopCards = listOf(flop2card1, flop2card2, flop2card3)
         val thirdFlopCards = listOf(flop3card1, flop3card2, flop3card3)
 
-        firstFlopCards.forEachIndexed { index, imageView ->
-            setImageFor(firstFlop[index], imageView)
+        firstFlopCards.forEachIndexed { index, linearLayout ->
+            setImageFor(firstFlop[index], linearLayout)
         }
-        secondFlopCards.forEachIndexed { index, imageView ->
-            setImageFor(secondFlop[index], imageView)
+        secondFlopCards.forEachIndexed { index, linearLayout ->
+            setImageFor(secondFlop[index], linearLayout)
         }
-        thirdFlopCards.forEachIndexed { index, imageView ->
-            setImageFor(thirdFlop[index], imageView)
+        thirdFlopCards.forEachIndexed { index, linearLayout ->
+            setImageFor(thirdFlop[index], linearLayout)
         }
     }
 
@@ -120,7 +134,7 @@ class GameScreen : AppCompatActivity() {
             player1card11,
             player1card12
         )
-        val player2CardViews = listOf(
+/*        val player2CardViews = listOf(
             player2card1,
             player2card2,
             player2card3,
@@ -133,16 +147,16 @@ class GameScreen : AppCompatActivity() {
             player2card10,
             player2card11,
             player2card12
-        )
+        )*/
 
-        player1CardViews.forEachIndexed { index, imageView ->
-            setOnTouchListenerFor(imageView)
-            setImageFor(players[0].cards()[index], imageView)
+            player1CardViews.forEachIndexed { index, linearLayout ->
+            setOnTouchListenerFor(linearLayout)
+            setImageFor(players[0].cards()[index], linearLayout)
         }
 
-        player2CardViews.forEachIndexed { index, imageView ->
+        /*player2CardViews.forEachIndexed { index, imageView ->
             setImageFor(players[1].cards()[index], imageView)
-        }
+        }*/
 
     }
 
@@ -172,12 +186,13 @@ class GameScreen : AppCompatActivity() {
     }
 
     @SuppressLint( "NewApi", "ClickableViewAccessibility")
-    private fun setOnTouchListenerFor(cardImageView: ImageView?) {
+    private fun setOnTouchListenerFor(cardImageView: LinearLayout?) {
         cardImageView!!.setOnTouchListener { v, event ->
             if (event.action == MotionEvent.ACTION_DOWN) {
                 val data = ClipData.newPlainText("", "")
                 val shadowBuilder = View.DragShadowBuilder(v)
                     v.startDragAndDrop(data, shadowBuilder, v, 0)
+
                 true
             } else {
                 false
@@ -185,11 +200,11 @@ class GameScreen : AppCompatActivity() {
         }
     }
 
-    private fun setImageFor(pokerCard: PokerCard, cardImageView: ImageView?) {
-        cardImageView!!.setImageBitmap(getBitmapPath(pokerCard.toString()))
-
+    private fun setImageFor(pokerCard: PokerCard, cardImageView: LinearLayout?) {
+        val imageView = ImageView(this)
+        imageView!!.setImageBitmap(getBitmapPath(pokerCard.toString()))
+        cardImageView!!.addView(imageView)
     }
-
 
     private fun getBitmapPath(bit: String): Bitmap? {
         return BitmapFactory.decodeStream(assets.open(bit.toLowerCase() + ".png"))
