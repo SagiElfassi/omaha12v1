@@ -150,7 +150,6 @@ class GameScreen : AppCompatActivity() {
         )*/
 
             player1CardViews.forEachIndexed { index, linearLayout ->
-            setOnTouchListenerFor(linearLayout)
             setImageFor(players[0].cards()[index], linearLayout)
         }
 
@@ -186,7 +185,7 @@ class GameScreen : AppCompatActivity() {
     }
 
     @SuppressLint( "NewApi", "ClickableViewAccessibility")
-    private fun setOnTouchListenerFor(cardImageView: LinearLayout?) {
+    private fun setOnTouchListenerFor(cardImageView: ImageView?) {
         cardImageView!!.setOnTouchListener { v, event ->
             if (event.action == MotionEvent.ACTION_DOWN) {
                 val data = ClipData.newPlainText("", "")
@@ -203,6 +202,7 @@ class GameScreen : AppCompatActivity() {
     private fun setImageFor(pokerCard: PokerCard, cardImageView: LinearLayout?) {
         val imageView = ImageView(this)
         imageView!!.setImageBitmap(getBitmapPath(pokerCard.toString()))
+        setOnTouchListenerFor(imageView)
         cardImageView!!.addView(imageView)
     }
 
