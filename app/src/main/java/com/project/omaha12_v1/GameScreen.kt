@@ -10,6 +10,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.support.annotation.RequiresApi
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
 import android.view.MotionEvent
 import android.view.View
 import android.widget.ImageView
@@ -65,7 +66,6 @@ class GameScreen : AppCompatActivity() {
             val secondFlop = game.gameBoard.secondKoo()
             val thirdFlop = game.gameBoard.thirdKoo()
 
-
             Handler().postDelayed({
                 val imageView1 = ImageView(this)
                 val imageView2 = ImageView(this)
@@ -93,6 +93,8 @@ class GameScreen : AppCompatActivity() {
                 river3.addView(imageView2)
             }, 6000)
 
+
+            Log.d("TAG", flop1slot1.getChildAt(0).tag.toString())
         }
     }
 
@@ -202,6 +204,7 @@ class GameScreen : AppCompatActivity() {
     private fun setImageFor(pokerCard: PokerCard, cardImageView: LinearLayout?) {
         val imageView = ImageView(this)
         imageView!!.setImageBitmap(getBitmapPath(pokerCard.toString()))
+        imageView.tag = pokerCard.toString()
         setOnTouchListenerFor(imageView)
         cardImageView!!.addView(imageView)
     }

@@ -21,15 +21,17 @@ class CardsDragAndDropListener(
 
     @RequiresApi(Build.VERSION_CODES.JELLY_BEAN)
     override fun onDrag(v: View?, event: DragEvent?): Boolean {
+        val container = v as LinearLayout
         when (event!!.action) {
-
             DragEvent.ACTION_DRAG_STARTED -> {
                 Log.d("TAG", "onDrag: drag started.")
                 return true
             }
 
             DragEvent.ACTION_DRAG_ENTERED -> {
-                v!!.background = slotEntered
+                if(container.childCount == 0) {
+                    container.background = slotEntered
+                }
                 return true
             }
 
@@ -38,17 +40,20 @@ class CardsDragAndDropListener(
             }
 
             DragEvent.ACTION_DRAG_EXITED -> {
-                v!!.background = slotNormal
+                if(container.childCount == 0){
+                    container.background = slotNormal
+                }
                 return true
             }
 
             DragEvent.ACTION_DROP -> {
-                v!!.background = slotNormal
-                val view = event.localState as ImageView
-                val owner = view.parent as ViewGroup
-                owner.removeView(view)
-                val container = v as LinearLayout
-                container.addView(view)
+                if(container.childCount == 0) {
+                    container.background = slotNormal
+                    val view = event.localState as ImageView
+                    val owner = view.parent as ViewGroup
+                    owner.removeView(view)
+                    container.addView(view)
+                }
                 return true
             }
 
