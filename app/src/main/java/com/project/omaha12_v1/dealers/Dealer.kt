@@ -31,7 +31,7 @@ class DealerImpl(
 ) : Dealer {
 
 
-    override fun calcBestHand(communityCards: Array<PokerCard>, playerOmahaHands: List<PlayerOmahaHand>): List<PlayerHand>{
+    override fun calcBestHand(communityCards: Array<PokerCard>, playerOmahaHands: List<PlayerOmahaHand>): List<PlayerHand> {
 
         val winners = playerOmahaHands.map { playerOmahaHand ->
             PlayerHand(

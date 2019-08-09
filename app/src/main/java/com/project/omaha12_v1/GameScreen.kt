@@ -103,8 +103,12 @@ class GameScreen : AppCompatActivity() {
                     flop3slot3.getChildAt(0).tag.toString() + flop3slot4.getChildAt(0).tag.toString()
 
             game.players[0].setHandToFirstFlop(OmahaHand.fromString(omHandString1)!!)
-            game.players[0].setHandToFirstFlop(OmahaHand.fromString(omHandString2)!!)
-            game.players[0].setHandToFirstFlop(OmahaHand.fromString(omHandString3)!!)
+            game.players[0].setHandToSecondFlop(OmahaHand.fromString(omHandString2)!!)
+            game.players[0].setHandToThirdFlop(OmahaHand.fromString(omHandString3)!!)
+
+            game.players[1].setHandToFirstFlop(OmahaHand.fromString("AsAcKsKc")!!)
+            game.players[1].setHandToSecondFlop(OmahaHand.fromString("AdAcKdKc")!!)
+            game.players[1].setHandToThirdFlop(OmahaHand.fromString("QsQdJsJd")!!)
 
             Log.d("TAG", game.calculateResult().playersResult[0].kooPoints.toString())
         }
