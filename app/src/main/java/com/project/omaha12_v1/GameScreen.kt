@@ -95,14 +95,18 @@ class GameScreen : AppCompatActivity() {
                 river3.addView(imageView2)
             }, 6000)
 
-            val omHandString = flop1slot1.getChildAt(0).tag.toString() + flop1slot2.getChildAt(0).tag.toString()+
+            val omHandString1 = flop1slot1.getChildAt(0).tag.toString() + flop1slot2.getChildAt(0).tag.toString()+
                     flop1slot3.getChildAt(0).tag.toString() + flop1slot4.getChildAt(0).tag.toString()
+            val omHandString2 = flop2slot1.getChildAt(0).tag.toString() + flop2slot2.getChildAt(0).tag.toString()+
+                    flop2slot3.getChildAt(0).tag.toString() + flop2slot4.getChildAt(0).tag.toString()
+            val omHandString3 = flop3slot1.getChildAt(0).tag.toString() + flop3slot2.getChildAt(0).tag.toString()+
+                    flop3slot3.getChildAt(0).tag.toString() + flop3slot4.getChildAt(0).tag.toString()
 
-            val firstKooOmahaHand = OmahaHand.fromString(omHandString)!!
+            game.players[0].setHandToFirstFlop(OmahaHand.fromString(omHandString1)!!)
+            game.players[0].setHandToFirstFlop(OmahaHand.fromString(omHandString2)!!)
+            game.players[0].setHandToFirstFlop(OmahaHand.fromString(omHandString3)!!)
 
-            game.players[0].setHandToFirstFlop(firstKooOmahaHand)
-
-            Log.d("TAG", firstKooOmahaHand.cards[2].toString())
+            Log.d("TAG", game.calculateResult().playersResult[0].kooPoints.toString())
         }
     }
 

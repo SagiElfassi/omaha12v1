@@ -52,14 +52,14 @@ class Omaha12Game(val dealer: Dealer, var gameBoard: GameBoard, val players: Lis
 
     private fun getKooResult(
         kooBoardCards: List<PokerCard>,
-        getPlayerKooHand: KFunction1<Player, List<PokerCard>>): List<PlayerResult> {
+        getPlayerKooHand: KFunction1<Player, OmahaHand>): List<PlayerResult> {
 
         val kooBestHand = dealer.calcBestHand(
             kooBoardCards.toTypedArray(),
-            players.map { player -> PlayerOmahaHand(player.name(), OmahaHand(getPlayerKooHand(player))) })
+            players.map { player -> PlayerOmahaHand(player.name(), OmahaHand(getPlayerKooHand(player).cards)) })
 
         return players.map { player ->
-            val bonus = dealer.calcBonus(kooBoardCards.toTypedArray(), OmahaHand(getPlayerKooHand(player)))
+            val bonus = dealer.calcBonus(kooBoardCards.toTypedArray(), OmahaHand(getPlayerKooHand(player).cards))
             if (kooBestHand.any { bh -> bh.playerId == player.name() })
                     PlayerResult(player.name(), 1.0, bonus)
                 else
