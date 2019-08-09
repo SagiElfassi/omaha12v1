@@ -8,6 +8,7 @@ import com.project.omaha12_v1.hands.ShowDownEvaluator
 import com.project.omaha12_v1.players.Player
 import com.project.omaha12_v1.players.PlayerOmahaHand
 import com.project.omaha12_v1.players.PlayerHand
+import android.util.Log
 
 interface Dealer {
     fun deal(players: List<Player>)
@@ -33,13 +34,16 @@ class DealerImpl(
 
     override fun calcBestHand(communityCards: Array<PokerCard>, playerOmahaHands: List<PlayerOmahaHand>): List<PlayerHand> {
 
-        val winners = playerOmahaHands.map { playerOmahaHand ->
+
+        val playersHand = playerOmahaHands.map { playerOmahaHand ->
             PlayerHand(
                 playerOmahaHand.playerId,
                 showDownEvaluator.evaluate(communityCards, playerOmahaHand.omahaHand)
-            ) }.sortedWith(ComparePlayerHand)
+            )
+            }.sortedWith(ComparePlayerHand)
 
-        return winners.filter { player -> ComparePlayerHand.compare(player, winners.first()) == 0 }
+        playersHand.forEach { Log.d("TAG","playerHand: $it")}
+        return playersHand.filter { player -> ComparePlayerHand.compare(player, playersHand.first()) == 0 }
     }
 
     override fun calcBonus(communityCards: Array<PokerCard>, playerOmahaHand: OmahaHand): Double {
