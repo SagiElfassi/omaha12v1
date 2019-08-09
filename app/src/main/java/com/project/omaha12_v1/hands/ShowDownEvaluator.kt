@@ -8,6 +8,7 @@ interface ShowDownEvaluator {
 }
 
 class ShowDownEvaluatorImpl : ShowDownEvaluator {
+
     override fun evaluate(communityCards: Array<PokerCard>, omahaHand: OmahaHand): PokerHand {
         return getAllHandsPermutation(communityCards, omahaHand).sortedWith(CompareHands).first()
     }

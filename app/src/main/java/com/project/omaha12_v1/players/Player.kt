@@ -1,17 +1,18 @@
 package com.project.omaha12_v1.players
 
 import com.project.omaha12_v1.cards.PokerCard
+import com.project.omaha12_v1.hands.OmahaHand
 
 interface Player {
     fun takeCards(cards: List<PokerCard>) //after dealing
 
-    fun setCardToFirstFlop(cardIndex: Int)
-    fun setCardToSecondFlop(cardIndex: Int)
-    fun setCardToThirdFlop(cardIndex: Int)
+    fun setHandToFirstFlop(hand: OmahaHand)
+    fun setHandToSecondFlop(hand: OmahaHand)
+    fun setHandToThirdFlop(hand: OmahaHand)
 
-    fun getFirstFlopCards(): List<PokerCard>
-    fun getSecondFlopCards(): List<PokerCard>
-    fun getThirdFlopCards(): List<PokerCard>
+    fun getFirstFlopCards(): OmahaHand
+    fun getSecondFlopCards(): OmahaHand
+    fun getThirdFlopCards(): OmahaHand
 
     fun name(): String
     fun cards(): List<PokerCard>
@@ -19,9 +20,9 @@ interface Player {
 
 class PlayerImpl(val name: String,
                  private var cards: List<PokerCard>,
-                 private var firstFlopCards: List<PokerCard>,
-                 private var secondFlopCards: List<PokerCard>,
-                 private var thirdFlopCards: List<PokerCard>): Player {
+                 private var firstFlopCards: OmahaHand,
+                 private var secondFlopCards: OmahaHand,
+                 private var thirdFlopCards: OmahaHand): Player {
 
     override fun cards(): List<PokerCard> {
         return cards
@@ -31,28 +32,28 @@ class PlayerImpl(val name: String,
         this.cards = cards
     }
 
-    override fun getFirstFlopCards(): List<PokerCard> {
+    override fun getFirstFlopCards(): OmahaHand {
         return firstFlopCards
     }
 
-    override fun getSecondFlopCards(): List<PokerCard> {
+    override fun getSecondFlopCards(): OmahaHand {
         return secondFlopCards
     }
 
-    override fun getThirdFlopCards(): List<PokerCard> {
+    override fun getThirdFlopCards(): OmahaHand {
         return thirdFlopCards
     }
 
-    override fun setCardToFirstFlop(cardIndex: Int) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun setHandToFirstFlop(hand: OmahaHand) {
+        firstFlopCards = hand
     }
 
-    override fun setCardToSecondFlop(cardIndex: Int) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun setHandToSecondFlop(hand: OmahaHand) {
+        secondFlopCards = hand
     }
 
-    override fun setCardToThirdFlop(cardIndex: Int) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun setHandToThirdFlop(hand: OmahaHand) {
+        thirdFlopCards = hand
     }
 
     override fun name(): String {

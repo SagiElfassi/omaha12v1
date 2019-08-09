@@ -15,12 +15,14 @@ import android.view.MotionEvent
 import android.view.View
 import android.widget.ImageView
 import android.widget.LinearLayout
-import android.widget.ListView
 import com.project.omaha12_v1.board.GameBoardImpl
 import com.project.omaha12_v1.cards.CardDeckFactory
 import com.project.omaha12_v1.cards.PokerCard
+import com.project.omaha12_v1.cards.PokerCard.Companion.fromString
 import com.project.omaha12_v1.dealers.DealerImpl
 import com.project.omaha12_v1.game.Omaha12Game
+import com.project.omaha12_v1.hands.OmahaHand
+import com.project.omaha12_v1.hands.ShowDownEvaluator
 import com.project.omaha12_v1.hands.ShowDownEvaluatorImpl
 import com.project.omaha12_v1.players.PlayerImpl
 import kotlinx.android.synthetic.main.game_screen.*
@@ -36,12 +38,12 @@ class GameScreen : AppCompatActivity() {
         requestedOrientation = (ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE)
         setContentView(R.layout.game_screen)
 
-        initiatIamReadyButton()
+        initiateIamReadyButton()
 
         val cards = CardDeckFactory().build()
         val players = listOf(
-            PlayerImpl("Alonm", listOf(), listOf(), listOf(), listOf()),
-            PlayerImpl("Sagia", listOf(), listOf(), listOf(), listOf())
+            PlayerImpl("Alonm", listOf(), OmahaHand(listOf()), OmahaHand(listOf()), OmahaHand(listOf())),
+            PlayerImpl("Sagia", listOf(), OmahaHand(listOf()), OmahaHand(listOf()), OmahaHand(listOf()))
         )
 
         game = Omaha12Game(
@@ -58,7 +60,7 @@ class GameScreen : AppCompatActivity() {
         open3Flops(game)
     }
 
-    private fun initiatIamReadyButton() {
+    private fun initiateIamReadyButton() {
         iamReadyButton.setOnClickListener {
             game.openTurnAndRivers()
 
@@ -93,8 +95,14 @@ class GameScreen : AppCompatActivity() {
                 river3.addView(imageView2)
             }, 6000)
 
+            val omHandString = flop1slot1.getChildAt(0).tag.toString() + flop1slot2.getChildAt(0).tag.toString()+
+                    flop1slot3.getChildAt(0).tag.toString() + flop1slot4.getChildAt(0).tag.toString()
 
-            Log.d("TAG", flop1slot1.getChildAt(0).tag.toString())
+            val firstKooOmahaHand = OmahaHand.fromString(omHandString)!!
+
+            game.players[0].setHandToFirstFlop(firstKooOmahaHand)
+
+            Log.d("TAG", firstKooOmahaHand.cards[2].toString())
         }
     }
 

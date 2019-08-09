@@ -32,9 +32,9 @@ class Omaha12Game(val dealer: Dealer, var gameBoard: GameBoard, val players: Lis
 
     fun calculateResult(): GameResult {
 
-        val firstKooResults = getKooResult(gameBoard.firstKoo(), Player::getFirstFlopCards)
-        val secondKooResults = getKooResult(gameBoard.secondKoo(), Player::getSecondFlopCards)
-        val thirdKooResults = getKooResult(gameBoard.thirdKoo(), Player::getThirdFlopCards)
+        val firstKooResults = getKooResult(gameBoard.firstKoo(), Player:: getFirstFlopCards)
+        val secondKooResults = getKooResult(gameBoard.secondKoo(), Player:: getSecondFlopCards)
+        val thirdKooResults = getKooResult(gameBoard.thirdKoo(), Player:: getThirdFlopCards)
 
         val gameResult = GameResult(
             listOf(firstKooResults, secondKooResults, thirdKooResults)
