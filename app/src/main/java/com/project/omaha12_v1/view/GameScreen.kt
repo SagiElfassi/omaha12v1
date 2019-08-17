@@ -1,4 +1,4 @@
-package com.project.omaha12_v1
+package com.project.omaha12_v1.view
 
 import android.annotation.SuppressLint
 import android.content.ClipData
@@ -15,14 +15,13 @@ import android.view.MotionEvent
 import android.view.View
 import android.widget.ImageView
 import android.widget.LinearLayout
+import com.project.omaha12_v1.R
 import com.project.omaha12_v1.board.GameBoardImpl
 import com.project.omaha12_v1.cards.CardDeckFactory
 import com.project.omaha12_v1.cards.PokerCard
-import com.project.omaha12_v1.cards.PokerCard.Companion.fromString
 import com.project.omaha12_v1.dealers.DealerImpl
 import com.project.omaha12_v1.game.Omaha12Game
 import com.project.omaha12_v1.hands.OmahaHand
-import com.project.omaha12_v1.hands.ShowDownEvaluator
 import com.project.omaha12_v1.hands.ShowDownEvaluatorImpl
 import com.project.omaha12_v1.players.PlayerImpl
 import kotlinx.android.synthetic.main.game_screen.*
@@ -199,7 +198,12 @@ class GameScreen : AppCompatActivity() {
 
         slots.forEach { it.background = slotNormal }
 
-        slots.forEach { it.setOnDragListener(CardsDragAndDropListener(slotNormal, slotEntered)) }
+        slots.forEach { it.setOnDragListener(
+            CardsDragAndDropListener(
+                slotNormal,
+                slotEntered
+            )
+        ) }
     }
 
     @SuppressLint( "NewApi", "ClickableViewAccessibility")

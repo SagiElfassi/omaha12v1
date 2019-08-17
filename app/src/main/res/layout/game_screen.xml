@@ -5,7 +5,7 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context="com.project.omaha12_v1.GameScreen"
+        tools:context="com.project.omaha12_v1.view.GameScreen"
         android:background="@drawable/poker_table"
 >
 

@@ -1,4 +1,4 @@
-package com.project.omaha12_v1
+package com.project.omaha12_v1.view
 
 import android.graphics.drawable.Drawable
 import android.opengl.Visibility
