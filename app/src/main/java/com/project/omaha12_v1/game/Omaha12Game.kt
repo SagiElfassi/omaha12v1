@@ -61,7 +61,7 @@ class Omaha12Game(val dealer: Dealer, var gameBoard: GameBoard, val players: Lis
         return players.map { player ->
             val bonus = dealer.calcBonus(kooBoardCards.toTypedArray(), OmahaHand(getPlayerKooHand(player).cards))
             if (kooBestHand.any { bh -> bh.playerId == player.name() })
-                    PlayerResult(player.name(), 1.0, bonus)
+                    PlayerResult(player.name(), 1.0 / kooBestHand.size, bonus)
                 else
                     PlayerResult(player.name(), 0.0, bonus)
         }

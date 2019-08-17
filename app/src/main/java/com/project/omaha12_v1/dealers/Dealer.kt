@@ -33,8 +33,6 @@ class DealerImpl(
 
 
     override fun calcBestHand(communityCards: Array<PokerCard>, playerOmahaHands: List<PlayerOmahaHand>): List<PlayerHand> {
-
-
         val playersHand = playerOmahaHands.map { playerOmahaHand ->
             PlayerHand(
                 playerOmahaHand.playerId,

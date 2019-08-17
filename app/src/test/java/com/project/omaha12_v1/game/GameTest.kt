@@ -138,7 +138,7 @@ class GameTest {
     fun `calculate result for three players when all splits`() {
         val alonPlayer = PlayerImpl(
             "alonmo", listOf(),
-            OmahaHand.fromString("KcKdAcAd")!!,
+            OmahaHand.fromString("KcKsAsAd")!!,
             OmahaHand.fromString("KcKdAcAd")!!,
             OmahaHand.fromString("QcQdTcTd")!!
         )
@@ -157,7 +157,7 @@ class GameTest {
             OmahaHand.fromString("QcQdTcTd")!!
         )
 
-        val boards = GameBoardImpl.fromString("TsJdQh2h2s", "TsJsQh2h2d", "TsJsQh2h2d")
+        val boards = GameBoardImpl.fromString("TsJsQs2h2s", "TsJsQh2h2d", "TsJsQh2h2d")
         val gameBoard = GameBoardImpl(boards[0], boards[1], boards[2])
 
         val dealer = DealerImpl(CardDeckFactory().build(), ShowDownEvaluatorImpl())
@@ -165,9 +165,9 @@ class GameTest {
 
         val gameResult = game.calculateResult()
 
-        assertThat(gameResult.playersResult.contains(PlayerResult("alonmo", 1.0, 5.0)), equalTo(true))
-        assertThat(gameResult.playersResult.contains(PlayerResult("sagiel", 1.0)), equalTo(true))
-        assertThat(gameResult.playersResult.contains(PlayerResult("grojan", 1.0)), equalTo(true))
+        assertThat(gameResult.playersResult.contains(PlayerResult("alonmo", 1 + 1.0 / 3.0 + 1.0 / 3.0, 10.0)), equalTo(true))
+        assertThat(gameResult.playersResult.contains(PlayerResult("sagiel", 1.0 / 3.0 + 1.0 / 3.0)), equalTo(true))
+        assertThat(gameResult.playersResult.contains(PlayerResult("grojan", 1.0 / 3.0 + 1.0 / 3.0)), equalTo(true))
     }
 
     @Test
