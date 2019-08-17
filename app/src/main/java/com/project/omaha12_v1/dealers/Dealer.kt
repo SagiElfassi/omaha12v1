@@ -42,7 +42,7 @@ class DealerImpl(
             )
             }.sortedWith(ComparePlayerHand)
 
-        playersHand.forEach { Log.d("TAG","playerHand: $it")}
+        //playersHand.forEach { Log.d("TAG","playerHand: $it")}
         return playersHand.filter { player -> ComparePlayerHand.compare(player, playersHand.first()) == 0 }
     }
 

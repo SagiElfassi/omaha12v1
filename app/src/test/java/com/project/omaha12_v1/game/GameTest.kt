@@ -17,16 +17,16 @@ class GameTest {
     fun `calculate result for two players and onw won all 3 koo (complete)`() {
         val alonPlayer = PlayerImpl(
             "alonmo", listOf(),
-            OmahaHand.fromString("KcKdAcAd")!!.cards,
-            OmahaHand.fromString("KhKsAhAs")!!.cards,
-            OmahaHand.fromString("QcQdTcTd")!!.cards
+            OmahaHand.fromString("KcKdAcAd")!!,
+            OmahaHand.fromString("KhKsAhAs")!!,
+            OmahaHand.fromString("QcQdTcTd")!!
         )
 
         val sagiPlayer = PlayerImpl(
             "sagiel", listOf(),
-            OmahaHand.fromString("3c4c5c6c")!!.cards,
-            OmahaHand.fromString("3h4h5h6h")!!.cards,
-            OmahaHand.fromString("3d4d5d6d")!!.cards
+            OmahaHand.fromString("3c4c5c6c")!!,
+            OmahaHand.fromString("3h4h5h6h")!!,
+            OmahaHand.fromString("3d4d5d6d")!!
         )
 
         val boards = GameBoardImpl.fromString("TsJdQh2h3s", "TsJsQh2s3s", "Jc9c8c7c7h")
@@ -37,7 +37,7 @@ class GameTest {
 
         val gameResult = game.calculateResult()
 
-        assertThat(gameResult.playersResult.contains(PlayerResult("alonmo", 6.0)), equalTo(true))
+        assertThat(gameResult.playersResult.contains(PlayerResult("alonmo", 6.0, 5.0)), equalTo(true))
         assertThat(gameResult.playersResult.contains(PlayerResult("sagiel", 0.0)), equalTo(true))
     }
 
@@ -45,16 +45,16 @@ class GameTest {
     fun `calculate result for two players, two wins for first player and one win for second`() {
         val alonPlayer = PlayerImpl(
             "alonmo", listOf(),
-            OmahaHand.fromString("KcKdAcAd")!!.cards,
-            OmahaHand.fromString("KhKsAhAs")!!.cards,
-            OmahaHand.fromString("QcQdTcTd")!!.cards
+            OmahaHand.fromString("KcKdAcAd")!!,
+            OmahaHand.fromString("KhKsAhAs")!!,
+            OmahaHand.fromString("QcQdTcTd")!!
         )
 
         val sagiPlayer = PlayerImpl(
             "sagiel", listOf(),
-            OmahaHand.fromString("3c4c5c6c")!!.cards,
-            OmahaHand.fromString("3h4h5h6h")!!.cards,
-            OmahaHand.fromString("7d8c5d6d")!!.cards
+            OmahaHand.fromString("3c4c5c6c")!!,
+            OmahaHand.fromString("3h4h5h6h")!!,
+            OmahaHand.fromString("7d8c5d6d")!!
         )
 
         val boards = GameBoardImpl.fromString("TsJdQh2h3s", "TsJsQh2s3s", "Jc9c8s7c7h")
@@ -74,16 +74,16 @@ class GameTest {
     fun `calculate result for two players when there is a split koo`() {
         val alonPlayer = PlayerImpl(
             "alonmo", listOf(),
-            OmahaHand.fromString("KcKdAcAd")!!.cards,
-            OmahaHand.fromString("5h6hKsAh")!!.cards,
-            OmahaHand.fromString("QcQdTcTd")!!.cards
+            OmahaHand.fromString("KcKdAcAd")!!,
+            OmahaHand.fromString("5h6hKsAh")!!,
+            OmahaHand.fromString("QcQdTcTd")!!
         )
 
         val sagiPlayer = PlayerImpl(
             "sagiel", listOf(),
-            OmahaHand.fromString("3c4c5c6c")!!.cards,
-            OmahaHand.fromString("Kh3h4hAs")!!.cards,
-            OmahaHand.fromString("7d8c5d6d")!!.cards
+            OmahaHand.fromString("3c4c5c6c")!!,
+            OmahaHand.fromString("Kh3h4hAs")!!,
+            OmahaHand.fromString("7d8c5d6d")!!
         )
 
         val boards = GameBoardImpl.fromString("TsJdQh2h3s", "TsJsQh2h3d", "Jc9c8s7c7h")
@@ -102,23 +102,23 @@ class GameTest {
     fun `calculate result for three players when one win with complete`() {
         val alonPlayer = PlayerImpl(
             "alonmo", listOf(),
-            OmahaHand.fromString("KcKdAcAd")!!.cards,
-            OmahaHand.fromString("KcKdAcAd")!!.cards,
-            OmahaHand.fromString("QcQdTcTd")!!.cards
+            OmahaHand.fromString("KcKdAcAd")!!,
+            OmahaHand.fromString("KcKdAcAd")!!,
+            OmahaHand.fromString("QcQdTcTd")!!
         )
 
         val sagiPlayer = PlayerImpl(
             "sagiel", listOf(),
-            OmahaHand.fromString("3s4s5s6s")!!.cards,
-            OmahaHand.fromString("3h4h5h6h")!!.cards,
-            OmahaHand.fromString("3d4d5d6d")!!.cards
+            OmahaHand.fromString("3s4s5s6s")!!,
+            OmahaHand.fromString("3h4h5h6h")!!,
+            OmahaHand.fromString("3d4d5d6d")!!
         )
 
         val grojanPlayer = PlayerImpl(
             "grojan", listOf(),
-            OmahaHand.fromString("3s4s5s6s")!!.cards,
-            OmahaHand.fromString("3h4h5h6h")!!.cards,
-            OmahaHand.fromString("3d4d5d6d")!!.cards
+            OmahaHand.fromString("3s4s5s6s")!!,
+            OmahaHand.fromString("3h4h5h6h")!!,
+            OmahaHand.fromString("3d4d5d6d")!!
         )
 
         val boards = GameBoardImpl.fromString("TsJdQh2h2s", "TsJsQh2h2d", "TsJsQh2h2d")
@@ -138,23 +138,23 @@ class GameTest {
     fun `calculate result for three players when all splits`() {
         val alonPlayer = PlayerImpl(
             "alonmo", listOf(),
-            OmahaHand.fromString("KcKdAcAd")!!.cards,
-            OmahaHand.fromString("KcKdAcAd")!!.cards,
-            OmahaHand.fromString("QcQdTcTd")!!.cards
+            OmahaHand.fromString("KcKdAcAd")!!,
+            OmahaHand.fromString("KcKdAcAd")!!,
+            OmahaHand.fromString("QcQdTcTd")!!
         )
 
         val sagiPlayer = PlayerImpl(
             "sagiel", listOf(),
-            OmahaHand.fromString("KcKdAcAd")!!.cards,
-            OmahaHand.fromString("KcKdAcAd")!!.cards,
-            OmahaHand.fromString("QcQdTcTd")!!.cards
+            OmahaHand.fromString("KcKdAcAd")!!,
+            OmahaHand.fromString("KcKdAcAd")!!,
+            OmahaHand.fromString("QcQdTcTd")!!
         )
 
         val grojanPlayer = PlayerImpl(
             "grojan", listOf(),
-            OmahaHand.fromString("KcKdAcAd")!!.cards,
-            OmahaHand.fromString("KcKdAcAd")!!.cards,
-            OmahaHand.fromString("QcQdTcTd")!!.cards
+            OmahaHand.fromString("KcKdAcAd")!!,
+            OmahaHand.fromString("KcKdAcAd")!!,
+            OmahaHand.fromString("QcQdTcTd")!!
         )
 
         val boards = GameBoardImpl.fromString("TsJdQh2h2s", "TsJsQh2h2d", "TsJsQh2h2d")
@@ -165,7 +165,7 @@ class GameTest {
 
         val gameResult = game.calculateResult()
 
-        assertThat(gameResult.playersResult.contains(PlayerResult("alonmo", 1.0)), equalTo(true))
+        assertThat(gameResult.playersResult.contains(PlayerResult("alonmo", 1.0, 5.0)), equalTo(true))
         assertThat(gameResult.playersResult.contains(PlayerResult("sagiel", 1.0)), equalTo(true))
         assertThat(gameResult.playersResult.contains(PlayerResult("grojan", 1.0)), equalTo(true))
     }
@@ -174,23 +174,23 @@ class GameTest {
     fun `calculate result for three players were 2 - 1 - 0`() {
         val alonPlayer = PlayerImpl(
             "alonmo", listOf(),
-            OmahaHand.fromString("KcKdAcAd")!!.cards,
-            OmahaHand.fromString("KcKdAcAd")!!.cards,
-            OmahaHand.fromString("QcQdTcTd")!!.cards
+            OmahaHand.fromString("KcKdAcAd")!!,
+            OmahaHand.fromString("KcKdAcAd")!!,
+            OmahaHand.fromString("QcQdTcTd")!!
         )
 
         val sagiPlayer = PlayerImpl(
             "sagiel", listOf(),
-            OmahaHand.fromString("3c4c5c6c")!!.cards,
-            OmahaHand.fromString("3h4h5h6h")!!.cards,
-            OmahaHand.fromString("7d8c5d6d")!!.cards
+            OmahaHand.fromString("3c4c5c6c")!!,
+            OmahaHand.fromString("3h4h5h6h")!!,
+            OmahaHand.fromString("7d8c5d6d")!!
         )
 
         val grojanPlayer = PlayerImpl(
             "grojan", listOf(),
-            OmahaHand.fromString("3c4c5c6c")!!.cards,
-            OmahaHand.fromString("3h4h5h6h")!!.cards,
-            OmahaHand.fromString("3h4h5h6h")!!.cards
+            OmahaHand.fromString("3c4c5c6c")!!,
+            OmahaHand.fromString("3h4h5h6h")!!,
+            OmahaHand.fromString("3h4h5h6h")!!
         )
 
         val boards = GameBoardImpl.fromString("TsJdQh2h2s", "TsJsQh2h2d", "Jc9c8s7c7h")
@@ -210,16 +210,16 @@ class GameTest {
     fun `calculate result for two players when first player get bonus on royal flush and second player on four of a kind`() {
         val alonPlayer = PlayerImpl(
             "alonmo", listOf(),
-            OmahaHand.fromString("KcKdAcAd")!!.cards,
-            OmahaHand.fromString("KhKsAhAs")!!.cards,
-            OmahaHand.fromString("QcQdTcTd")!!.cards
+            OmahaHand.fromString("KcKdAcAd")!!,
+            OmahaHand.fromString("KhKsAhAs")!!,
+            OmahaHand.fromString("QcQdTcTd")!!
         )
 
         val sagiPlayer = PlayerImpl(
             "sagiel", listOf(),
-            OmahaHand.fromString("3c4c5c6c")!!.cards,
-            OmahaHand.fromString("3h4h5h6h")!!.cards,
-            OmahaHand.fromString("7d7h5d6d")!!.cards
+            OmahaHand.fromString("3c4c5c6c")!!,
+            OmahaHand.fromString("3h4h5h6h")!!,
+            OmahaHand.fromString("7d7h5d6d")!!
         )
 
         val boards = GameBoardImpl.fromString("TsJdQh2h3s", "TsJsQh2s3s", "Jc9c8c7c7h")
