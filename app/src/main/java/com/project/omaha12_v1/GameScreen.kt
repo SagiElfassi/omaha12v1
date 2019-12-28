@@ -111,6 +111,7 @@ class GameScreen : AppCompatActivity() {
             game.players[1].setHandToThirdFlop(OmahaHand.fromString("QsQdJsJd")!!)
 
             Log.d("TAG", game.calculateResult().playersResult[0].kooPoints.toString())
+            Log.d("TAG", game.calculateResult().playersResult[0].kooPoints.toString())
         }
     }
 
