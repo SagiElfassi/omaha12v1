@@ -3,9 +3,7 @@ package com.project.omaha12_v1.game
 import com.project.omaha12_v1.board.GameBoard
 import com.project.omaha12_v1.cards.PokerCard
 import com.project.omaha12_v1.dealers.Dealer
-import com.project.omaha12_v1.hands.HandRank
 import com.project.omaha12_v1.hands.OmahaHand
-import com.project.omaha12_v1.players.PlayerHand
 import com.project.omaha12_v1.players.Player
 import com.project.omaha12_v1.players.PlayerOmahaHand
 import kotlin.reflect.KFunction1
@@ -54,14 +52,15 @@ class Omaha12Game(val dealer: Dealer, var gameBoard: GameBoard, val players: Lis
         kooBoardCards: List<PokerCard>,
         getPlayerKooHand: KFunction1<Player, OmahaHand>): List<PlayerResult> {
 
-        val kooBestHand = dealer.calcBestHand(
+        val kooHands = dealer.calcHands(
             kooBoardCards.toTypedArray(),
             players.map { player -> PlayerOmahaHand(player.name(), OmahaHand(getPlayerKooHand(player).cards)) })
 
+
         return players.map { player ->
             val bonus = dealer.calcBonus(kooBoardCards.toTypedArray(), OmahaHand(getPlayerKooHand(player).cards))
-            if (kooBestHand.any { bh -> bh.playerId == player.name() })
-                    PlayerResult(player.name(), 1.0, bonus)
+            if (kooHands.winningHands.any { bh -> bh.playerId == player.name() })
+                    PlayerResult(player.name(), 1.0 / kooHands.winningHands.size, bonus)
                 else
                     PlayerResult(player.name(), 0.0, bonus)
         }

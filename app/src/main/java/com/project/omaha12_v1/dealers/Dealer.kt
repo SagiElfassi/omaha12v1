@@ -20,7 +20,7 @@ interface Dealer {
 
     fun getDeck(): CardDeck
 
-    fun calcBestHand(communityCards: Array<PokerCard>, playerOmahaHands: List<PlayerOmahaHand>): List<PlayerHand>
+    fun calcHands(communityCards: Array<PokerCard>, playerOmahaHands: List<PlayerOmahaHand>): EvaluatedHandsData
 
     fun calcBonus(communityCards: Array<PokerCard>, playerOmahaHand: OmahaHand): Double
 }
@@ -31,15 +31,19 @@ class DealerImpl(
 ) : Dealer {
 
 
-    override fun calcBestHand(communityCards: Array<PokerCard>, playerOmahaHands: List<PlayerOmahaHand>): List<PlayerHand> {
-
-        val winners = playerOmahaHands.map { playerOmahaHand ->
+    override fun calcHands(communityCards: Array<PokerCard>, playerOmahaHands: List<PlayerOmahaHand>): EvaluatedHandsData {
+        val playersHand = playerOmahaHands.map { playerOmahaHand ->
             PlayerHand(
                 playerOmahaHand.playerId,
                 showDownEvaluator.evaluate(communityCards, playerOmahaHand.omahaHand)
-            ) }.sortedWith(ComparePlayerHand)
+            )
+            }.sortedWith(ComparePlayerHand)
 
-        return winners.filter { player -> ComparePlayerHand.compare(player, winners.first()) == 0 }
+        playersHand.forEach { System.out.println("playerHand: $it")}
+        val winningHands = playersHand.filter { player -> ComparePlayerHand.compare(player, playersHand.first()) == 0 }
+        val loosingHands = playersHand.filterNot { player -> ComparePlayerHand.compare(player, playersHand.first()) == 0 }
+
+        return EvaluatedHandsData(winningHands, loosingHands)
     }
 
     override fun calcBonus(communityCards: Array<PokerCard>, playerOmahaHand: OmahaHand): Double {
@@ -88,3 +92,5 @@ class ComparePlayerHand {
         override fun compare(a: PlayerHand, b: PlayerHand): Int = b.pokerHand.compare(a.pokerHand)
     }
 }
+
+data class EvaluatedHandsData(val winningHands: List<PlayerHand>, val loosingHands: List<PlayerHand>)

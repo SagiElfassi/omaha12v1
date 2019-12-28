@@ -1,10 +1,8 @@
-package com.project.omaha12_v1
+package com.project.omaha12_v1.view
 
 import android.annotation.SuppressLint
 import android.content.ClipData
 import android.content.pm.ActivityInfo
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
@@ -14,17 +12,16 @@ import android.util.Log
 import android.view.MotionEvent
 import android.view.View
 import android.widget.ImageView
-import android.widget.LinearLayout
+import com.project.omaha12_v1.R
 import com.project.omaha12_v1.board.GameBoardImpl
 import com.project.omaha12_v1.cards.CardDeckFactory
-import com.project.omaha12_v1.cards.PokerCard
-import com.project.omaha12_v1.cards.PokerCard.Companion.fromString
 import com.project.omaha12_v1.dealers.DealerImpl
 import com.project.omaha12_v1.game.Omaha12Game
 import com.project.omaha12_v1.hands.OmahaHand
-import com.project.omaha12_v1.hands.ShowDownEvaluator
 import com.project.omaha12_v1.hands.ShowDownEvaluatorImpl
 import com.project.omaha12_v1.players.PlayerImpl
+import com.project.omaha12_v1.view.listener.CardsDragAndDropListener
+import com.project.omaha12_v1.view.listener.PlayerCardDragNDropListener
 import kotlinx.android.synthetic.main.game_screen.*
 
 
@@ -32,10 +29,14 @@ class GameScreen : AppCompatActivity() {
 
     private lateinit var game: Omaha12Game
 
+    private lateinit var imageHelper :ViewImageHelper
+
     @RequiresApi(Build.VERSION_CODES.N)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        imageHelper = ViewImageHelper(assets)
         requestedOrientation = (ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE)
+
         setContentView(R.layout.game_screen)
 
         initiateIamReadyButton()
@@ -69,43 +70,33 @@ class GameScreen : AppCompatActivity() {
             val thirdFlop = game.gameBoard.thirdKoo()
 
             Handler().postDelayed({
-                val imageView1 = ImageView(this)
-                val imageView2 = ImageView(this)
-                imageView1.setImageBitmap(getBitmapPath(firstFlop[3].toString()))
-                turn1.addView(imageView1)
-                imageView2.setImageBitmap(getBitmapPath(firstFlop[4].toString()))
-                river1.addView(imageView2)
+                turn1.addView(imageHelper.setImageFor(firstFlop[3], this))
+                river1.addView(imageHelper.setImageFor(firstFlop[4], this))
             }, 2000)
 
             Handler().postDelayed({
-                val imageView1 = ImageView(this)
-                val imageView2 = ImageView(this)
-                imageView1.setImageBitmap(getBitmapPath(secondFlop[3].toString()))
-                turn2.addView(imageView1)
-                imageView2.setImageBitmap(getBitmapPath(secondFlop[4].toString()))
-                river2.addView(imageView2)
+                turn2.addView(imageHelper.setImageFor(secondFlop[3], this))
+                river2.addView(imageHelper.setImageFor(secondFlop[4], this))
             }, 4000)
 
             Handler().postDelayed({
-                val imageView1 = ImageView(this)
-                val imageView2 = ImageView(this)
-                imageView1.setImageBitmap(getBitmapPath(thirdFlop[3].toString()))
-                turn3.addView(imageView1)
-                imageView2.setImageBitmap(getBitmapPath(thirdFlop[4].toString()))
-                river3.addView(imageView2)
+                turn3.addView(imageHelper.setImageFor(thirdFlop[3], this))
+                river3.addView(imageHelper.setImageFor(thirdFlop[4], this))
             }, 6000)
 
-            val omHandString1 = flop1slot1.getChildAt(0).tag.toString() + flop1slot2.getChildAt(0).tag.toString()+
+            // For calculations the hands
+            val omHandString1 = flop1slot1.getChildAt(0).tag.toString() + flop1slot2.getChildAt(0).tag.toString() +
                     flop1slot3.getChildAt(0).tag.toString() + flop1slot4.getChildAt(0).tag.toString()
-            val omHandString2 = flop2slot1.getChildAt(0).tag.toString() + flop2slot2.getChildAt(0).tag.toString()+
+            val omHandString2 = flop2slot1.getChildAt(0).tag.toString() + flop2slot2.getChildAt(0).tag.toString() +
                     flop2slot3.getChildAt(0).tag.toString() + flop2slot4.getChildAt(0).tag.toString()
-            val omHandString3 = flop3slot1.getChildAt(0).tag.toString() + flop3slot2.getChildAt(0).tag.toString()+
+            val omHandString3 = flop3slot1.getChildAt(0).tag.toString() + flop3slot2.getChildAt(0).tag.toString() +
                     flop3slot3.getChildAt(0).tag.toString() + flop3slot4.getChildAt(0).tag.toString()
 
             game.players[0].setHandToFirstFlop(OmahaHand.fromString(omHandString1)!!)
             game.players[0].setHandToSecondFlop(OmahaHand.fromString(omHandString2)!!)
             game.players[0].setHandToThirdFlop(OmahaHand.fromString(omHandString3)!!)
 
+            // Just for tests
             game.players[1].setHandToFirstFlop(OmahaHand.fromString("AsAcKsKc")!!)
             game.players[1].setHandToSecondFlop(OmahaHand.fromString("AdAcKdKc")!!)
             game.players[1].setHandToThirdFlop(OmahaHand.fromString("QsQdJsJd")!!)
@@ -127,13 +118,13 @@ class GameScreen : AppCompatActivity() {
         val thirdFlopCards = listOf(flop3card1, flop3card2, flop3card3)
 
         firstFlopCards.forEachIndexed { index, linearLayout ->
-            setImageFor(firstFlop[index], linearLayout)
+            linearLayout.addView(imageHelper.setImageFor(firstFlop[index], this))
         }
         secondFlopCards.forEachIndexed { index, linearLayout ->
-            setImageFor(secondFlop[index], linearLayout)
+            linearLayout.addView(imageHelper.setImageFor(secondFlop[index], this))
         }
         thirdFlopCards.forEachIndexed { index, linearLayout ->
-            setImageFor(thirdFlop[index], linearLayout)
+            linearLayout.addView(imageHelper.setImageFor(thirdFlop[index], this))
         }
     }
 
@@ -153,33 +144,26 @@ class GameScreen : AppCompatActivity() {
             player1card11,
             player1card12
         )
-/*        val player2CardViews = listOf(
-            player2card1,
-            player2card2,
-            player2card3,
-            player2card4,
-            player2card5,
-            player2card6,
-            player2card7,
-            player2card8,
-            player2card9,
-            player2card10,
-            player2card11,
-            player2card12
-        )*/
 
-            player1CardViews.forEachIndexed { index, linearLayout ->
-            setImageFor(players[0].cards()[index], linearLayout)
+        val slotNormal = resources.getDrawable(R.drawable.shape)
+        val slotEntered = resources.getDrawable(R.drawable.enter_shape)
+
+        player1CardViews.forEachIndexed { index, linearLayout ->
+            val imageView = imageHelper.setImageFor(players[0].cards()[index], this)
+            setOnTouchListenerFor(imageView)
+            linearLayout.addView(imageView)
+            linearLayout.setOnDragListener(
+                PlayerCardDragNDropListener(
+                    slotNormal,
+                    slotEntered
+                )
+            )
         }
-
-        /*player2CardViews.forEachIndexed { index, imageView ->
-            setImageFor(players[1].cards()[index], imageView)
-        }*/
-
     }
 
     @RequiresApi(Build.VERSION_CODES.JELLY_BEAN)
     private fun initSlots() {
+
         val slotNormal = resources.getDrawable(R.drawable.shape)
         val slotEntered = resources.getDrawable(R.drawable.enter_shape)
 
@@ -200,16 +184,23 @@ class GameScreen : AppCompatActivity() {
 
         slots.forEach { it.background = slotNormal }
 
-        slots.forEach { it.setOnDragListener(CardsDragAndDropListener(slotNormal, slotEntered)) }
+        slots.forEach {
+            it.setOnDragListener(
+                CardsDragAndDropListener(
+                    slotNormal,
+                    slotEntered
+                )
+            )
+        }
     }
 
-    @SuppressLint( "NewApi", "ClickableViewAccessibility")
+    @SuppressLint("NewApi", "ClickableViewAccessibility")
     private fun setOnTouchListenerFor(cardImageView: ImageView?) {
         cardImageView!!.setOnTouchListener { v, event ->
             if (event.action == MotionEvent.ACTION_DOWN) {
                 val data = ClipData.newPlainText("", "")
                 val shadowBuilder = View.DragShadowBuilder(v)
-                    v.startDragAndDrop(data, shadowBuilder, v, 0)
+                v.startDragAndDrop(data, shadowBuilder, v, 0)
 
                 true
             } else {
@@ -218,15 +209,4 @@ class GameScreen : AppCompatActivity() {
         }
     }
 
-    private fun setImageFor(pokerCard: PokerCard, cardImageView: LinearLayout?) {
-        val imageView = ImageView(this)
-        imageView!!.setImageBitmap(getBitmapPath(pokerCard.toString()))
-        imageView.tag = pokerCard.toString()
-        setOnTouchListenerFor(imageView)
-        cardImageView!!.addView(imageView)
-    }
-
-    private fun getBitmapPath(bit: String): Bitmap? {
-        return BitmapFactory.decodeStream(assets.open(bit.toLowerCase() + ".png"))
-    }
 }
